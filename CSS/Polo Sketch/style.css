@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.box1,.box2,.box3,.box4,.box5,.box6{
+    width: 98vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.box1{
+    background-image: url(Assets/1-sketch.jpg);
+}
+.box2{
+    background-image: url(Assets/1.jpg);
+}
+.box3{
+    background-image: url(Assets/2-sketch.jpg);
+}
+.box4{
+    background-image: url(Assets/2.jpg);
+}
+.box5{
+    background-image: url(Assets/3-sketch.jpg);
+}
+.box6{
+    background-image: url(Assets/3.jpg);
+}

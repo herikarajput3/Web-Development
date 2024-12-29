@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* Hero Section */
+.hero{
+    width: 1520px;
+    height: 700px;
+    background-color: rgba(0, 0, 0, 0.539);
+    background-image: url(Assets/Home-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: hard-light;
+}

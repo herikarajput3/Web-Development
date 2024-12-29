@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let option = prompt("Enter opt \n 1. Course \n 2. Movie \n 3. Book");
+
+        switch (option) {
+            case "1":
+                let selectedCourse = prompt("1. Full Stack Development\n 2. Graphics Designing\n 3. Digital Marketing")
+
+                switch (selectedCourse) {
+                    case "1":
+                        selectedCourse = "Full Stack Development"
+                        console.log("You have selected " + selectedCourse);
+                        break;
+                    case "2":
+                        selectedCourse = "Graphics Designing"
+                        console.log("You have selected " + selectedCourse);
+                        break;
+                    case "3":
+                        selectedCourse = "Digital Marketing"
+                        console.log("You have selected " + selectedCourse);
+                        break;
+                    default:
+                        console.log("Please select appropriate value");
+                        break;
+                }
+                break;
+            case "1":
+                let selectedMovie = prompt("1. Pushpa\n 2. RRR\n 3. Bahubali")
+                // option = selectedMovie
+                switch (selectedMovie) {
+                    case "1":
+                        selectedMovie = "Pushpa"
+                        console.log("You have selected " + selectedMovie);
+                        break;
+                    case "2":
+                        selectedMovie = "RRR"
+                        console.log("You have selected " + selectedMovie);
+                        break;
+                    case "3":
+                        selectedMovie = "Bahubali"
+                        console.log("You have selected " + selectedMovie);
+                        break;
+                    default:
+                        console.log("Please select appropriate value");
+                        break;
+                }
+                break;
+            case "3":
+                let selectedBook = prompt("1. Think & Grow Rich\n 2. Computer world\n 3. Python")
+                // option = selectedBook
+                switch (selectedBook) {
+                    case "1":
+                        selectedBook = "Think & Grow Rich"
+                        console.log("You have selected " + selectedBook);
+                        break;
+                    case "2":
+                        selectedBook = "Computer world"
+                        console.log("You have selected " + selectedBook);
+                        break;
+                    case "3":
+                        selectedBook = "Python"
+                        console.log("You have selected " + selectedBook);
+                        break;
+                    default:
+                        console.log("Please select appropriate value");
+                        break;
+                }
+                break;
+
+            default:
+                break;
+        }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

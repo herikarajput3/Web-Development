@@ -1,0 +1,694 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+}
+
+body {
+    font-weight: 400;
+}
+
+.contact-info {
+    background-color: rgb(52, 58, 64);
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.phone,
+.email,
+.social-media {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+
+}
+
+.phone {
+    width: 375px;
+    text-align: right;
+}
+
+.email {
+    width: 790px;
+}
+
+.text-white {
+    color: white;
+}
+
+.contact {
+    color: rgb(50, 219, 198);
+    text-decoration: none;
+}
+
+
+.social-media-info {
+    width: 335px;
+
+}
+
+.social-media {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+
+}
+
+.fa-brands {
+    color: rgb(50, 219, 198);
+}
+
+.fa-brands:hover {
+    filter: brightness(0.7);
+    transition: filter 0.2s ease-in-out;
+}
+
+.contact:hover {
+    filter: brightness(0.7);
+    transition: filter 0.2s ease-in-out;
+}
+
+/* Navigation Bar */
+
+nav {
+    position: sticky;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    gap: 250px;
+}
+
+/* Logo */
+
+.logo {
+    width: 280px;
+}
+
+.logo-img {
+    width: 115px;
+    float: right;
+}
+
+/* Main-menu */
+
+.pages {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    font-size: 0.8rem;
+    list-style: none;
+}
+
+.pages>li {
+    position: relative;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+.home {
+    color: rgb(50, 219, 198);
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    list-style: none;
+    background-color: #fff;
+}
+
+.dropdown>li {
+    width: 150px;
+    padding: 10px 20px;
+}
+
+.speciality {
+    border-top: 2px solid rgb(50, 219, 198);
+}
+
+.abouts:hover .dropdown {
+    display: block;
+}
+
+#arrow {
+    font-size: 0.8rem;
+}
+
+.abouts {
+    margin-top: 8px;
+}
+
+/* Hero Section */
+
+.hero-section>img {
+    width: 100%;
+}
+
+/* Text Section */
+
+.text-section {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 3.5rem;
+}
+
+.first-section,
+.second-section,
+.third-section {
+    margin: 50px 40px;
+}
+
+.number {
+    position: absolute;
+    top: -5px;
+    z-index: -1;
+    font-size: 8rem;
+    font-weight: 900;
+    opacity: 0.1;
+}
+
+.heading-desc {
+    margin-left: 40px;
+}
+
+.heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgb(50, 219, 198);
+}
+
+.description {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    padding: 10px 0;
+    color: rgb(93, 77, 77);
+}
+
+.check-list {
+    font-size: 0.8rem;
+    list-style: none;
+    color: rgb(93, 77, 77);
+    line-height: 2rem;
+}
+
+.fa-check {
+    margin-right: 12px;
+    color: rgb(50, 219, 198);
+}
+
+/* Work Section */
+.work-section {
+    text-align: center;
+}
+
+.section-heading {
+    font-size: 2.5rem;
+    font-weight: 500;
+    padding: 1rem;
+}
+
+.work-desc {
+    padding: 1.5rem 18rem;
+    color: rgb(93, 77, 77);
+    line-height: 1.8rem;
+}
+
+/* Image Section */
+
+.img-section {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img-section>img {
+    width: 32%;
+    margin: 0.5rem;
+}
+
+/* Box Description */
+
+.box-section {
+    margin: 8rem;
+    display: flex;
+    background-color: black;
+}
+
+.box-description {
+    margin: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img-box {
+    margin: 2rem;
+    width: 35%;
+}
+
+.box-heading {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.fa-solid {
+    margin-right: 5px;
+}
+
+.box-desc {
+    color: rgb(115, 115, 115);
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+}
+
+.read-more>a {
+    font-size: 0.8rem;
+    color: white;
+    margin: 1rem 0;
+    padding-top: 1rem;
+}
+
+.box-1,
+.box-2,
+.box-3,
+.box-4 {
+    width: 200px;
+    margin: 1rem;
+}
+
+/* Testimonial Section */
+.testimonial {
+    text-align: center;
+}
+
+.testimonial-desc {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin: 0 18rem;
+    color: rgb(93, 77, 77);
+
+}
+
+.testimonial-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.testimonial-img {
+    width: 2.1rem;
+    border-radius: 50%;
+}
+
+.person-name {
+    font-size: 0.8rem;
+    color: rgb(93, 77, 77);
+}
+
+/* Service Section */
+
+.service-section {
+    text-align: center;
+    padding-inline: 50px 0;
+}
+
+.service-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 55px;
+}
+
+.service {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    text-align: left;
+}
+
+.icon>i {
+    font-size: 2rem;
+    color: rgb(50, 219, 198);
+}
+
+.service-heading {
+    font-size: 1rem;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+.service-desc {
+    font-size: 0.8rem;
+    margin: 10px 0;
+    color: rgb(93, 77, 77);
+    padding-left: 50px;
+    line-height: 1.2rem;
+}
+
+.learn-more {
+    font-size: 0.7rem;
+    color: rgb(50, 219, 198);
+    text-decoration: none;
+}
+
+.service>a {
+    padding-left: 50px;
+}
+
+hr {
+    height: 1rem;
+    opacity: 0.5;
+}
+
+/* About section */
+.about-us-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 10rem;
+}
+
+.text-container {
+    width: 48%;
+}
+
+.about-us-desc {
+    font-size: 1rem;
+    color: rgb(115, 115, 115);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.feature {
+    text-align: left;
+    width: 45%;
+}
+
+.fa-solid {
+    font-size: 1.8rem;
+    color: rgb(108, 117, 125);
+    margin-bottom: 10px;
+}
+
+.feature-title {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 2rem;
+    margin-bottom: 5px;
+    color: rgb(77, 77, 77);
+}
+
+.feature-description {
+    font-size: 0.8rem;
+    line-height: 1.3rem;
+    color: rgb(115, 115, 115);
+}
+
+.image-container {
+    width: 45%;
+}
+
+img {
+    width: 100%;
+}
+
+/* Team Section */
+
+.our-team {
+    text-align: center;
+    margin: 0 auto;
+    padding: 60px 80px;
+}
+
+.team-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.team-member {
+    margin: 20px;
+    padding: 20px;
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.member-name {
+    font-size: 0.8rem;
+    color: rgb(77, 77, 77);
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.position {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgb(108, 117, 125);
+    opacity: 0.4;
+    margin-bottom: 15px;
+}
+
+.team-desc {
+    font-size: 0.8rem;
+    line-height: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.faa-brands {
+    color: rgb(119, 119, 119);
+    font-size: 1rem;
+    margin: 5px;
+}
+
+/* Blog Section */
+
+.blog-section {
+    text-align: center;
+}
+
+.blog-container {
+    display: flex;
+    justify-content: center;
+}
+
+.blog {
+    width: 200px;
+    margin: 10px;
+}
+
+.blog-image {
+    width: 100%;
+}
+
+.blog-content {
+    text-align: left;
+}
+
+.blog-title {
+    font-size: 0.8rem;
+    margin: 10px 0;
+    color: rgb(50, 219, 198);
+    font-weight: 500;
+}
+
+.blog-meta {
+    font-size: 0.6rem;
+    color: rgb(77, 77, 77);
+    margin-bottom: 10px;
+}
+
+.blog-text {
+    font-size: 0.6rem;
+    color: rgb(52, 58, 64);
+    line-height: 1rem;
+    margin-bottom: 10px;
+}
+
+.blog-button {
+    text-decoration: none;
+    font-size: 0.7rem;
+    color: rgb(50, 219, 198);
+    cursor: pointer;
+}
+
+/* Contact-us section */
+.contact-us {
+    text-align: center;
+}
+
+.contact-us-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-container {
+    width: 650px;
+    padding-left: 3rem;
+    text-align: left;
+}
+
+.form-heading {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 2rem 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 0.9rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(119, 119, 119);
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.form-name {
+    display: flex;
+    gap: 20%;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.info-container {
+    width: 450px;
+    padding: 1rem;
+}
+
+/* Let's Get Started */
+.get-started {
+    margin-top: 2rem;
+    background-color: rgb(50, 219, 198);
+    text-align: center;
+    padding: 2rem;
+}
+
+.get-started a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(51, 51, 51);
+}
+
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 10rem;
+    text-align: left;
+}
+
+.left-content,
+.right-content,
+.follow-us,
+.subscribe {
+    width: 20%;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 400;
+    padding: 0.8rem;
+}
+
+p {
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    color: rgb(119, 119, 119);
+    line-height: 1.5rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    font-size: 0.9rem;
+    color: rgb(119, 119, 119);
+    line-height: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.footer-social-media-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.follow-us ul li a {
+    font-size: 1.2rem;
+}
+
+.subscribe form {
+    display: flex;
+}
+
+.footer-email {
+    padding: 10px;
+    border: 2px solid rgb(119, 119, 119);
+    background-color: rgb(51, 51, 51);
+    margin-right: 10px;
+    /* border-radius: 25px; */
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+
+}
+
+.subscribe button {
+    background-color: rgb(50, 219, 198);
+    color: white;
+    cursor: pointer;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-left: -15px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer .fa-heart {
+    color: red;
+    font-size: 1rem;
+}

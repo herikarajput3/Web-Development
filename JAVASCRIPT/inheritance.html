@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inheritance</title>
+</head>
+
+<body>
+    <script>
+        class Animal {
+            constructor(name) {
+                this.name = name
+            }
+            eat() {
+                return `${this.name} is eating`;
+            }
+        }
+
+        class Dog {
+            constructor(name) {
+                this.name = name
+            }
+            eat() {
+                return `${this.name} is eating`;
+            }
+        }
+
+        class Cat {
+            constructor(name) {
+                this.name = name
+            }
+            eat() {
+                return `${this.name} is eating`;
+            }
+        }
+
+        const animal1 = new Animal("animal")
+        const animal2 = new Dog("dog")
+        const animal3 = new Cat("cat")
+        console.log(animal1.eat());
+        console.log(animal2.eat());
+        console.log(animal3.eat());
+
+
+    </script>
+</body>
+
+</html>

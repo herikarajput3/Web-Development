@@ -1,0 +1,20 @@
+.container{
+    height: 500px;
+    width: 500px;
+}
+
+.box{
+    height: 150px;
+    width: 150px;
+    border: 2px solid black;
+    transition-property: all;
+    transition-duration: 2s;
+    transition-delay: 0.1s;
+    transition-timing-function: steps(5);
+    transition: all 2s 0.1s ease;
+}
+
+.box:hover{
+    background-color: chocolate;
+    width: 500px;
+}

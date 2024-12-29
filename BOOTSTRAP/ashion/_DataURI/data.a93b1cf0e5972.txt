@@ -1,0 +1,1 @@
+chrome-extension://gkmbefmceinncpamijjdheeiikaeehdn/sidebar.bundle.js

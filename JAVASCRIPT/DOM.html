@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+
+<body>
+    <h1>Hello World</h1>
+    <h2 id="h-two">Hello World</h2>
+    <hr>
+    <h3 class="h-three">Hello World</h3>
+    <h3 class="h-three">Hello World</h3>
+    <h3 class="h-three">Hello World</h3>
+    <h3 class="h-three">Hello World</h3>
+    <h3 class="h-three">Hello World</h3>
+
+    <ul class="unordered_list" id="ul">
+        <li style="display: none;">Hello</li>
+        <li">World</li>
+    </ul>
+
+    <script>
+        // const h1 = document.getElementsByTagName("h1"); //HTML Collection
+        // const h2 = document.getElementById("h-two");
+        // const h3 = document.getElementsByClassName("h-three")
+        // console.log(h1);
+        // console.log(h2);
+        // console.log(h3);
+
+        // h2.style.color = "red";
+        // h2.classList = "This-is-class"
+        // console.log(h2);
+
+        // const h4 = document.querySelector(".h-three")
+        // const h4 = document.querySelectorAll(".h-three")
+        // console.log(h4);
+        // h4.style.color = "blue"
+
+        // const h12 = document.querySelectorAll(".h-three") //Node List
+        // h12.forEach(element => {
+        //     console.log(element);
+        // });
+
+        const html_coll = document.getElementsByTagName("h1");
+        // html_coll.forEach(element => {
+        //     console.log(element);
+        // }); // ---> for each loop is not work with html collection
+
+        // we can use for each loop with html collection by converting it into an array
+
+        const html_ary = Array.from(html_coll)
+        html_ary.forEach(element => {
+            console.log(element);
+        });
+
+        const ul = document.getElementById("ul")
+        // ul.innerHTML = `<li>World</li>`
+        // console.log(ul);
+
+        // ul.textContent  
+        console.log(ul.textContent);
+
+
+    </script>
+</body>
+
+</html>
