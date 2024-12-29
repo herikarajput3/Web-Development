@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+</head>
+
+<body>
+
+    <main>
+        <div>
+            <img src="" alt="" id="dog-img">
+            <p id="breed-name"></p>
+        </div>
+    </main>
+    <script>
+        // const url = "https://jsonplaceholder.typicode.com/users"
+        // fetch(url).then((items) => {
+        //     console.log(items);
+        //     return items.json()
+        // }).then((data) => {
+        //     console.log(data);
+
+        //     data.map((items) => {
+        //         console.log(items.name);
+        //         // console.log(items.id);
+        //     })
+        // })
+
+        // const showData = async () => {
+        //     try {
+        //         const data = await fetch(url)
+        //         const result = await data.json()
+        //         result.map((items) => {
+        //             console.log(items.name);
+        //         })
+        //     } catch (error) {
+        //         console.log(error);
+
+        //     }
+        // }
+        // showData()
+
+        // Problem getting API images to display in browser
+
+        const url = "https://dog.ceo/api/breeds/image/random"
+        const showData = async () => {
+            try {
+                const data = await fetch(url)
+                const result = await data.json()
+                console.log("data", data);
+
+                const image = result.message
+                console.log("url", image);
+
+                const dogImg = document.getElementById("dog-img")
+                dogImg.src = image;
+                dogImg.style.height = "250px";
+
+                const breedName = image.split("/")[4];
+                console.log("Breed Name:", breedName);
+
+                const breedDisplay = document.getElementById("breed-name");
+                breedDisplay.textContent = `Breed: ${breedName}`;
+                breedDisplay.style.fontSize = "1.5rem";
+                
+
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        showData();
+
+    </script>
+
+</body>
+
+</html>
