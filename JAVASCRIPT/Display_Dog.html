@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog API</title>
+</head>
+
+<body>
+
+    <main>
+        <div>
+            <img src="" alt="" id="dog-img">
+            <p id="breed-name"></p>
+        </div>
+    </main>
+    <script>
+
+        const url = "https://dog.ceo/api/breeds/image/random"
+        const breedURL = "https://dog.ceo/api/breeds/list/all"
+        const showData = async () => {
+            try {
+                const data = await fetch(url)
+                const result = await data.json()
+                console.log("data", data);
+
+                const image = result.message
+                console.log("url", image);
+
+                const dogImg = document.getElementById("dog-img")
+                dogImg.src = image; // URL of image
+                dogImg.style.height = "250px";
+
+                const breedName = image.split("/")[4];
+                console.log("Breed Name:", breedName);
+
+                let breedDisplay = document.getElementById("breed-name");
+                breedDisplay.textContent = `Breed: ${breedName}`;
+                breedDisplay.style.fontSize = "1.5rem";
+
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        showData();
+
+    </script>
+
+</body>
+
+</html>
