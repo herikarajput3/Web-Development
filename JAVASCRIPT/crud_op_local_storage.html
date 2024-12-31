@@ -28,6 +28,27 @@
                 </form>
             </div>
         </div>
+
+        <table class="table table-success table-striped table-hover">
+            <thead class="">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Action</th>
+
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <!-- <tr>
+                        <td>Herika</td>
+                        <td>1234</td>
+                        <td>
+                            <button class="btn btn-primary me-3 ">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr> -->
+            </tbody>
+        </table>
     </div>
 
     <script>
@@ -35,21 +56,59 @@
         const pwd = document.querySelector("#password")
         const form = document.querySelector("form")
 
-        // console.log(name, pwd, form);
         form.addEventListener("submit", (e) => {
             e.preventDefault()
             const userData = {
                 name: name.value,
                 pwd: password.value
             }
+            // Create
+
             let myData = JSON.parse(localStorage.getItem("myData")) || []
             myData.push(userData)
 
             localStorage.setItem("myData", JSON.stringify(myData))
 
+
             name.value = "";
-            password.value = "";
+            pwd.value = "";
         })
+
+        // Show
+        function show() {
+            let data = JSON.parse(localStorage.getItem("myData"))
+            console.log(data);
+
+            // Show in table 
+            for (let i = 0; i < data.length; i++) {
+                let tr = document.createElement("tr");
+                
+                let userName = document.createElement("td");
+                userName.textContent = data[i].name
+
+                let userPassword = document.createElement("td");
+                userPassword.textContent = data[i].pwd;
+                console.log(userPassword);
+                tbody.innerHTML += tr;
+
+
+
+
+
+
+                // adding name and password to td
+                // let key = localStorage.key(i)
+                // userName = JSON.parse(localStorage.getItem(name.value));
+                // console.log(userName);
+
+            }
+
+
+        }
+        show()
+
+
+
 
     </script>
 
