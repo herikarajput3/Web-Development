@@ -12,14 +12,14 @@
         const name = {
             Username: "Herika"
         }
-        localStorage.setItem("name", name)
-        localStorage.setItem("name", JSON.stringify(name))
+        localStorage.setItem("name", name) // key & value
+        localStorage.setItem("name", JSON.stringify(name)) // to display object in local storage
         // console.log(name);
 
         // const data = localStorage.getItem("name") // Give output in string format 
-        const data = JSON.parse(localStorage.getItem("name"))
+        const data = JSON.parse(localStorage.getItem("name")) // convert string to object
         console.log(data);
-        
+
 
     </script>
 </body>
