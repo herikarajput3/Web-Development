@@ -58,57 +58,60 @@
 
         form.addEventListener("submit", (e) => {
             e.preventDefault()
+
+            // Create new user object 
             const userData = {
                 name: name.value,
-                pwd: password.value
+                pwd: pwd.value
             }
-            // Create
 
+            // Retrieve existing data from local storage in form of array
             let myData = JSON.parse(localStorage.getItem("myData")) || []
             myData.push(userData)
 
+            // Save updated data back to local storage
             localStorage.setItem("myData", JSON.stringify(myData))
-
 
             name.value = "";
             pwd.value = "";
+            
+            appendRow(userData)
         })
 
         // Show
         function show() {
             let data = JSON.parse(localStorage.getItem("myData"))
-            console.log(data);
+        }
 
-            // Show in table 
-            for (let i = 0; i < data.length; i++) {
-                let tr = document.createElement("tr");
-                
-                let userName = document.createElement("td");
-                userName.textContent = data[i].name
+        function appendRow(user) {
+            let tr = document.createElement("tr");
 
-                let userPassword = document.createElement("td");
-                userPassword.textContent = data[i].pwd;
-                console.log(userPassword);
-                tbody.innerHTML += tr;
+            let userName = document.createElement("td");
+            userName.textContent = user.name
 
+            let userPassword = document.createElement("td");
+            userPassword.textContent = user.pwd;
 
+            let action = document.createElement("td");
 
+            let editBtn = document.createElement("button")
+            editBtn.textContent = "Edit";
+            editBtn.classList.add("btn", "btn-primary", "me-3");
 
+            let deleteBtn = document.createElement("button")
+            deleteBtn.textContent = "Delete";
+            deleteBtn.classList.add("btn", "btn-danger");
 
+            action.appendChild(editBtn);
+            action.appendChild(deleteBtn);
 
-                // adding name and password to td
-                // let key = localStorage.key(i)
-                // userName = JSON.parse(localStorage.getItem(name.value));
-                // console.log(userName);
+            tr.appendChild(userName)
+            tr.appendChild(userPassword)
+            tr.appendChild(action)
 
-            }
-
+            tbody.appendChild(tr)
 
         }
-        show()
-
-
-
 
     </script>
 
