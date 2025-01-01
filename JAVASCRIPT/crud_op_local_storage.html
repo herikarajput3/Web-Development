@@ -32,6 +32,7 @@
         <table class="table table-success table-striped table-hover">
             <thead class="">
                 <tr>
+                    <th scope="col">Index</th>
                     <th scope="col">Name</th>
                     <th scope="col">Password</th>
                     <th scope="col">Action</th>
@@ -40,6 +41,7 @@
             </thead>
             <tbody id="tbody">
                 <!-- <tr>
+                        <td>Index</td>
                         <td>Herika</td>
                         <td>1234</td>
                         <td>
@@ -72,46 +74,79 @@
             // Save updated data back to local storage
             localStorage.setItem("myData", JSON.stringify(myData))
 
+            show()
+
             name.value = "";
             pwd.value = "";
-            
-            appendRow(userData)
+
+            // appendRow(userData)
         })
 
         // Show
         function show() {
-            let data = JSON.parse(localStorage.getItem("myData"))
+            let data = JSON.parse(localStorage.getItem("myData"));
+            let result = ""
+
+            data.map((items, index) => {
+                // console.log(items.name);
+                result += `<tr>
+                        <td>${index + 1}</td>
+                        <td>${items.name}</td>
+                        <td>${items.pwd}</td>
+                        <td>
+                            <button class="btn btn-primary me-3" onclick=editItem(${index})>Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>`
+            })
+
+            tbody.innerHTML = result;
         }
 
-        function appendRow(user) {
-            let tr = document.createElement("tr");
+        // Edit Data 
 
-            let userName = document.createElement("td");
-            userName.textContent = user.name
+        function editItem(id) {
+            let data = JSON.parse(localStorage.getItem("myData"));
+            // console.log(data);
+            data.map((items) => {
+                // if (items[id] ) {
+                    console.log(items);
+                    
+                // }
+            })
 
-            let userPassword = document.createElement("td");
-            userPassword.textContent = user.pwd;
-
-            let action = document.createElement("td");
-
-            let editBtn = document.createElement("button")
-            editBtn.textContent = "Edit";
-            editBtn.classList.add("btn", "btn-primary", "me-3");
-
-            let deleteBtn = document.createElement("button")
-            deleteBtn.textContent = "Delete";
-            deleteBtn.classList.add("btn", "btn-danger");
-
-            action.appendChild(editBtn);
-            action.appendChild(deleteBtn);
-
-            tr.appendChild(userName)
-            tr.appendChild(userPassword)
-            tr.appendChild(action)
-
-            tbody.appendChild(tr)
 
         }
+
+        // function appendRow(user) {
+        //     let tr = document.createElement("tr");
+
+        //     let userName = document.createElement("td");
+        //     userName.textContent = user.name
+
+        //     let userPassword = document.createElement("td");
+        //     userPassword.textContent = user.pwd;
+
+        //     let action = document.createElement("td");
+
+        //     let editBtn = document.createElement("button")
+        //     editBtn.textContent = "Edit";
+        //     editBtn.classList.add("btn", "btn-primary", "me-3");
+
+        //     let deleteBtn = document.createElement("button")
+        //     deleteBtn.textContent = "Delete";
+        //     deleteBtn.classList.add("btn", "btn-danger");
+
+        //     action.appendChild(editBtn);
+        //     action.appendChild(deleteBtn);
+
+        //     tr.appendChild(userName)
+        //     tr.appendChild(userPassword)
+        //     tr.appendChild(action)
+
+        //     tbody.appendChild(tr)
+
+        // }
 
     </script>
 
