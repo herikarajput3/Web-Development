@@ -41,21 +41,21 @@
             </thead>
             <tbody id="tbody">
                 <!-- <tr>
-                        <td>Index</td>
-                        <td>Herika</td>
-                        <td>1234</td>
-                        <td>
-                            <button class="btn btn-primary me-3 ">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr> -->
+                            <td>Index</td>
+                            <td>Herika</td>
+                            <td>1234</td>
+                            <td>
+                                <button class="btn btn-primary me-3 ">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr> -->
             </tbody>
         </table>
     </div>
 
     <script>
-        const name = document.querySelector("#name")
-        const pwd = document.querySelector("#password")
+        let name = document.querySelector("#name")
+        let pwd = document.querySelector("#password")
         const form = document.querySelector("form")
 
         form.addEventListener("submit", (e) => {
@@ -71,13 +71,13 @@
             let myData = JSON.parse(localStorage.getItem("myData")) || []
             myData.push(userData)
 
-            // Save updated data back to local storage
             localStorage.setItem("myData", JSON.stringify(myData))
 
-            show()
 
             name.value = "";
             pwd.value = "";
+            show()
+
 
             // appendRow(userData)
         })
@@ -90,14 +90,14 @@
             data.map((items, index) => {
                 // console.log(items.name);
                 result += `<tr>
-                        <td>${index + 1}</td>
-                        <td>${items.name}</td>
-                        <td>${items.pwd}</td>
-                        <td>
-                            <button class="btn btn-primary me-3" onclick=editItem(${index})>Edit</button>
-                            <button class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>`
+                            <td>${index + 1}</td>
+                            <td>${items.name}</td>
+                            <td>${items.pwd}</td>
+                            <td>
+                                <button class="btn btn-primary me-3" onclick=editItem(${index})>Edit</button>
+                                <button class="btn btn-danger" onclick=removeData(${index})>Delete</button>
+                            </td>
+                        </tr>`
             })
 
             tbody.innerHTML = result;
@@ -108,14 +108,17 @@
         function editItem(id) {
             let data = JSON.parse(localStorage.getItem("myData"));
             // console.log(data);
-            data.map((items) => {
-                // if (items[id] ) {
-                    console.log(items);
-                    
-                // }
-            })
+            // console.log(data[id].name);
 
+            name.value = data[id].name;
+            pwd.value = data[id].pwd;
 
+            // localStorage.setItem("data",JSON.stringify(data[id]));
+        }
+
+        function removeData(id) {
+            let data = JSON.parse(localStorage.getItem("myData"));
+            localStorage.removeItem(data[id]);
         }
 
         // function appendRow(user) {
