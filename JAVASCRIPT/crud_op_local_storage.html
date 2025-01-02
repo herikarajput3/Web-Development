@@ -55,18 +55,22 @@
     </div>
 
     <script>
-        let name = document.querySelector("#name");
+        let Username = document.querySelector("#name");
         let pwd = document.querySelector("#password");
         const form = document.querySelector("form");
         let submit = document.querySelector(".btn-primary");
         let update = document.querySelector(".btn-warning");
+        let deleteBtn = document.querySelector(".btn-danger");
+
+        submit.style.display = "block"
+        update.style.display = "none"
 
         form.addEventListener("submit", (e) => {
             e.preventDefault()
 
             // Create new user object 
             const userData = {
-                name: name.value,
+                name: Username.value,
                 pwd: pwd.value
             }
 
@@ -78,7 +82,7 @@
             localStorage.setItem("myData", JSON.stringify(myData))
 
 
-            name.value = "";
+            Username.value = "";
             pwd.value = "";
             show()
 
@@ -114,29 +118,34 @@
             submit.style.display = "none"
             update.style.display = "block"
 
-            name.value = data[id].name;
+            Username.value = data[id].name;
             pwd.value = data[id].pwd;
 
             update.addEventListener("click", (e) => {
                 e.preventDefault();
                 userData = {
-                    name: name.value,
+                    name: Username.value,
                     pwd: pwd.value
                 }
                 data.splice(id, 1, userData)
-                localStorage.setItem("user", JSON.stringify(data))
-                name.value = "";
+                localStorage.setItem("myData", JSON.stringify(data))
+                show();
+                Username.value = "";
                 pwd.value = "";
+
+                submit.style.display = "block"
+                update.style.display = "none"
             })
-            show()
         }
 
-        // function removeData(id) {
-        //     let data = JSON.parse(localStorage.getItem("myData"));
-        //     localStorage.removeItem(data[id]);
+        function removeData(id) {
+            let data = JSON.parse(localStorage.getItem("myData"));
+            console.log(data[id]);
 
-
-        // }
+            data.splice(id, 1);
+            localStorage.setItem("myData", JSON.stringify(data))
+            show();
+        }
 
         // function appendRow(user) {
         //     let tr = document.createElement("tr");
