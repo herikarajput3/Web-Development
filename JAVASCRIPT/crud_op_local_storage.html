@@ -140,7 +140,6 @@
 
         function removeData(id) {
             let data = JSON.parse(localStorage.getItem("myData"));
-            console.log(data[id]);
 
             data.splice(id, 1);
             localStorage.setItem("myData", JSON.stringify(data))
