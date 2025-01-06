@@ -127,15 +127,17 @@
                     name: Username.value,
                     pwd: pwd.value
                 }
-                data.splice(id, 1, userData)
-                localStorage.setItem("myData", JSON.stringify(data))
-                show();
-                Username.value = "";
-                pwd.value = "";
-
+                data.splice(id, 1, userData);
+                localStorage.setItem("myData", JSON.stringify(data));
+                
+                
                 submit.style.display = "block"
                 update.style.display = "none"
+                location.reload();
             })
+            
+            // window.location.reload();
+            show()
         }
 
         function removeData(id) {
