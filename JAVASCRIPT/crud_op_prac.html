@@ -130,12 +130,18 @@
                 updateBtn.style.display = "none";
 
                 show();
-                
+
                 userName.value = "";
                 password.value = "";
             })
+        }
 
+        function deleteData(id) {
+            let userData = JSON.parse(localStorage.getItem("userData"));
+            userData.splice(id, 1);
+            localStorage.setItem("userData", JSON.stringify(userData));
 
+            show();
         }
 
 
