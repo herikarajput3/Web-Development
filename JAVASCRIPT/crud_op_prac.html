@@ -24,8 +24,8 @@
                     <label for="">Password: </label>
                     <input type="password" class="form-control" id="password">
 
-                    <button class="btn btn-primary my-3">Submit</button>
-                    <button class="btn btn-warning my-3">Update</button>
+                    <button class="btn btn-primary my-3 submitBtn">Submit</button>
+                    <button class="btn btn-warning my-3 updateBtn">Update</button>
                 </form>
             </div>
         </div>
@@ -47,7 +47,7 @@
                         <td>1234</td>
                         <td>
                             <button class="btn btn-primary me-3 ">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-danger ">Delete</button>
                         </td>
                     </tr> -->
             </tbody>
@@ -55,95 +55,89 @@
     </div>
 
     <script>
+        let form = document.querySelector("form");
         let userName = document.querySelector("#name");
-        let pwd = document.querySelector("#password");
-        let submitBtn = document.querySelector(".btn-primary");
-        let updateBtn = document.querySelector(".btn-warning");
-        let deleteBtn = document.querySelector(".btn-danger");
-        const form = document.querySelector("form");
+        let password = document.querySelector("#password");
+        let tbody = document.querySelector("#tbody");
+        let submitBtn = document.querySelector(".submitBtn");
+        let deleteBtn = document.querySelector(".deleteBtn");
+        let updateBtn = document.querySelector(".updateBtn");
 
         submitBtn.style.display = "block";
         updateBtn.style.display = "none";
 
+
         form.addEventListener("submit", (e) => {
             e.preventDefault();
-            const userData = {
+
+            let data = {
                 name: userName.value,
-                pwd: pwd.value
+                password: password.value
             }
 
-            let data = JSON.parse(localStorage.getItem("data")) || [];
-            data.push(userData);
-
-            localStorage.setItem("data", JSON.stringify(data));
+            let userData = JSON.parse(localStorage.getItem("userData")) || [];
+            userData.push(data);
+            localStorage.setItem("userData", JSON.stringify(userData));
+            show();
 
             userName.value = "";
-            pwd.value = "";
-
-            show();
+            password.value = "";
 
         })
 
-        // Show data into table.
         function show() {
-            let data = JSON.parse(localStorage.getItem("data"));
-            let result = "";
+            let userData = JSON.parse(localStorage.getItem("userData")) || [];
+            let showData = "";
 
-            data.map((item, index) => {
-                result += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${item.name}</td>
-                        <td>${item.pwd}</td>
-                        <td>
-                            <button class="btn btn-primary me-3" onclick=editData(${index})>Edit</button>
-                            <button class="btn btn-danger" onclick= removeData(${index})>Delete</button>
-                        </td>
-                    </tr>`;
+            userData.map((items, index) => {
+                showData += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${items.name}</td>
+                    <td>${items.password}</td>
+                    <td>
+                        <button class="btn btn-primary me-3" onclick=editData(${index})>Edit</button>
+                        <button class="btn btn-danger" onclick=deleteData(${index})>Delete</button>
+                    </td>
+                </tr>
+                `;
             })
-            tbody.innerHTML = result;
+            tbody.innerHTML = showData;
         }
 
-        // Edit data 
         function editData(id) {
-            let data = JSON.parse(localStorage.getItem("data"));
+            let userData = JSON.parse(localStorage.getItem("userData"));
+
             submitBtn.style.display = "none";
             updateBtn.style.display = "block";
 
-            userName.value = data[id].name;
-            pwd.value = data[id].pwd;
+            // console.log(userData[id].name);
 
+            userName.value = userData[id].name;
+            password.value = userData[id].password;
 
             updateBtn.addEventListener("click", (e) => {
                 e.preventDefault();
-
-                // Update the specific entry
-                updatedData = {
+                data = {
                     name: userName.value,
-                    pwd: pwd.value
+                    password: password.value
                 }
-                data.splice(id, 1, updatedData);
 
-                localStorage.setItem("data", JSON.stringify(data));
-
-                show();
-
+                userData.splice(id, 1, data);
+                localStorage.setItem("userData", JSON.stringify(userData));
 
                 submitBtn.style.display = "block";
                 updateBtn.style.display = "none";
+
+                show();
+                
+                userName.value = "";
+                password.value = "";
             })
-            userName.value = "";
-            pwd.value = "";
+
+
         }
 
-        // Delete data
-        function removeData(id){
-            let data = JSON.parse(localStorage.getItem("data"));
-
-            data.splice(id,1);
-            localStorage.setItem("data",JSON.stringify(data))
-            show();
-        }
 
 
 

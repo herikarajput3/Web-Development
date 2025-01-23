@@ -1,6 +1,6 @@
 // const user1 = {
 //     name: "Herika",
-//     age: 22,
+//     age: 22,     
 //     about: function () {
 //         console.log(this.name, this.age)
 //     }
