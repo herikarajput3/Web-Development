@@ -35,10 +35,30 @@ const user1 = {
     }
 }
 
-user1.about();
+// user1.about();
 
 // If we don't write this keyword we get error as it is not able to find fname and lname.
 // this keyword gives the reference of the object.
+
+// another way to print data
+
+console.log(user1["fname"]);
+
+// To make 100 users we have to make 100 objects so that to simplify it we make a function and return object in it.
+
+function userData(fname, lname) {
+    const userObj = {}
+    userObj.fname = fname;
+    userObj.lname = lname;
+    userObj.about = function () {
+        console.log(`My name is ${this.fname} ${this.lname}`);
+    }
+    return userObj;
+}
+
+const herika = userData("Herika","Rajput");
+herika.about();
+
 
 
 
