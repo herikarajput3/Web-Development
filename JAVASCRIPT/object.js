@@ -42,23 +42,47 @@ const user1 = {
 
 // another way to print data
 
-console.log(user1["fname"]);
+// console.log(user1["fname"]);
 
 // To make 100 users we have to make 100 objects so that to simplify it we make a function and return object in it.
 
-function userData(fname, lname) {
+// function userData(fname, lname) {
+//     const userObj = {}
+//     userObj.fname = fname;
+//     userObj.lname = lname;
+//     userObj.about = function () {
+//         console.log(`My name is ${this.fname} ${this.lname}`);
+//     }
+//     return userObj;
+// }
+
+// const herika = userData("Herika","Rajput");
+// herika.about();
+
+// In above example we have to create function each time when we call the userData function
+
+const userMethod = {
+    about: function () {
+        console.log(`My name is ${this.fname} ${this.lname}`);
+    },
+    hobbies: function () {
+        console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
+    }
+}
+
+function userData(fname, lname, hobby) {
     const userObj = {}
     userObj.fname = fname;
     userObj.lname = lname;
-    userObj.about = function () {
-        console.log(`My name is ${this.fname} ${this.lname}`);
-    }
+    userObj.hobby = hobby;
+    userObj.about = userMethod.about
+    userObj.hobbies = userMethod.hobbies
     return userObj;
 }
 
-const herika = userData("Herika","Rajput");
+const herika = userData("Herika", "Rajput", "reading");
 herika.about();
-
+herika.hobbies();
 
 
 
