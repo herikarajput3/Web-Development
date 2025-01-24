@@ -61,30 +61,49 @@ const user1 = {
 
 // In above example we have to create function each time when we call the userData function
 
-const userMethod = {
-    about: function () {
-        console.log(`My name is ${this.fname} ${this.lname}`);
-    },
-    hobbies: function () {
-        console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
-    }
-}
+// const userMethod = {
+//     about: function () {
+//         console.log(`My name is ${this.fname} ${this.lname}`);
+//     },
+//     hobbies: function () {
+//         console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
+//     }
+// }
+
+// function userData(fname, lname, hobby) {
+//     const userObj = {}
+//     userObj.fname = fname;
+//     userObj.lname = lname;
+//     userObj.hobby = hobby;
+//     userObj.about = userMethod.about
+//     userObj.hobbies = userMethod.hobbies
+//     return userObj;
+// }
+
+// const herika = userData("Herika", "Rajput", "reading");
+// herika.about();
+// herika.hobbies();
+
+// Now we will use prototype of function which act as a object.
 
 function userData(fname, lname, hobby) {
     const userObj = {}
     userObj.fname = fname;
     userObj.lname = lname;
     userObj.hobby = hobby;
-    userObj.about = userMethod.about
-    userObj.hobbies = userMethod.hobbies
+    userObj.about = userData.prototype.about
+    userObj.hobbies = userData.prototype.hobbies
     return userObj;
+}
+
+userData.prototype.about = function () {
+    console.log(`My name is ${this.fname} ${this.lname}`);
+}
+
+userData.prototype.hobbies = function () {
+    console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
 }
 
 const herika = userData("Herika", "Rajput", "reading");
 herika.about();
 herika.hobbies();
-
-
-
-
-
