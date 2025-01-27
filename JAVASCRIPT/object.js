@@ -86,24 +86,87 @@ const user1 = {
 
 // Now we will use prototype of function which act as a object.
 
-function userData(fname, lname, hobby) {
-    const userObj = {}
-    userObj.fname = fname;
-    userObj.lname = lname;
-    userObj.hobby = hobby;
-    userObj.about = userData.prototype.about
-    userObj.hobbies = userData.prototype.hobbies
-    return userObj;
+// function userData(fname, lname, hobby) {
+//     const userObj = {}
+//     userObj.fname = fname;
+//     userObj.lname = lname;
+//     userObj.hobby = hobby;
+//     userObj.about = userData.prototype.about
+//     userObj.hobbies = userData.prototype.hobbies
+//     return userObj;
+// }
+
+// userData.prototype.about = function () {
+//     console.log(`My name is ${this.fname} ${this.lname}`);
+// }
+
+// userData.prototype.hobbies = function () {
+//     console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
+// }
+
+// const herika = userData("Herika", "Rajput", "reading");
+// herika.about();
+// herika.hobbies();
+
+// Object creation so that we don't have to write this: userObj.about = userData.prototype.about
+// function userData(fname, lname, hobby) {
+//     const userObj = Object.create(userData.prototype)
+//     userObj.fname = fname;
+//     userObj.lname = lname;
+//     userObj.hobby = hobby;
+//     return userObj;
+// }
+
+// userData.prototype.about = function () {
+//     console.log(`My name is ${this.fname} ${this.lname}`);
+// }
+
+// userData.prototype.hobbies = function () {
+//     console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
+// }
+
+// const herika = userData("Herika", "Rajput", "reading");
+// herika.about();
+// herika.hobbies();
+
+// New keyword: 1) it give this name to object and return it automatically 2) we don't have to write: const userObj = Object.create(userData.prototype)
+// function userData(fname, lname, hobby) {
+//     this.fname = fname;
+//     this.lname = lname;
+//     this.hobby = hobby;
+// }
+
+// userData.prototype.about = function () {
+//     console.log(`My name is ${this.fname} ${this.lname}`);
+// }
+
+// userData.prototype.hobbies = function () {
+//     console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
+// }
+
+// const herika = new userData("Herika", "Rajput", "reading");
+// herika.about();
+// herika.hobbies();
+
+// class
+
+class userData {
+    constructor(fname, lname, hobby){
+        this.fname = fname;
+        this.lname = lname;
+        this.hobby = hobby;
+    }
+
+    about() {
+        console.log(`My name is ${this.fname} ${this.lname}`);
+    }
+
+    hobbies() {
+        console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
+    }
 }
 
-userData.prototype.about = function () {
-    console.log(`My name is ${this.fname} ${this.lname}`);
-}
-
-userData.prototype.hobbies = function () {
-    console.log(`My name is ${this.fname} and my hobby is ${this.hobby}`);
-}
-
-const herika = userData("Herika", "Rajput", "reading");
+const herika = new userData("Herika", "Rajput", "reading");
 herika.about();
 herika.hobbies();
+
