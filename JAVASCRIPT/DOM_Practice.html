@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Practice</title>
+</head>
+
+<body>
+    <h1>Good Morning</h1>
+    <script>
+        const rootNode = document.getRootNode();
+        const htmlNode = rootNode.childNodes[1];
+        const head = htmlNode.childNodes[0]
+        const body = htmlNode.childNodes[2];
+        const script = body.childNodes[1];
+        // script.childNodes[1] We get undefined as we cannot change code inside script tag. We can only access textnode.
+        // Another way to access body 
+        const Body = document.body;
+        // We can manipulate body
+        Body.style.backgroundColor = "pink"
+        const h1 = Body.childNodes[1]
+        h1.innerText = "Good Afternoon";
+        h1.style.color = "Brown"
+
+    </script>
+</body>
+
+</html>
