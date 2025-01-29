@@ -8,7 +8,9 @@
 <body>
     <p id="p">Hello <span style="display: none;">Herika</span> </p>
 
-    <div class="box"></div>
+    <div class="box">Hello World</div>
+    <div class="box">Hello World</div>
+    <div class="box">Hello World</div>
 
     <script>
         const p = document.getElementById("p");
@@ -16,13 +18,31 @@
         console.log(p.innerText); // It doesn't show any hidden element
         console.log(p.textContent); // It shows the hidden element as well
 
-        const box = document.querySelector(".box");
-        box.innerHTML = "<h1>Hello</h1>";
-        box.innerHTML+= "<h2>Herika</h2>"; // If we don't use += then only the last one will be visible
+        // const box = document.querySelector(".box");
+        // box.innerHTML = "<h1>Hello</h1>";
+        // box.innerHTML+= "<h2>Herika</h2>"; // If we don't use += then only the last one will be visible
 
-        const h1 = document.createElement("h1");
-        h1.textContent = "Herika";
-        box.append(h1);
+        // const h1 = document.createElement("h1");
+        // h1.textContent = "Herika";
+        // box.append(h1);
+
+        // Nodelist --> support forEach method
+
+        // const box = document.querySelectorAll(".box");
+        // box.forEach((e) => {
+        //     e.style.color = "red";
+        // });
+
+        // HTML Collection --> not support foreach method
+
+        let box = document.querySelectorAll(".box");
+        box = Array.from(box); // Convert into array
+        box.forEach((e) => {
+            e.style.color = "red";
+        })
+        
+
+
 
         
         
