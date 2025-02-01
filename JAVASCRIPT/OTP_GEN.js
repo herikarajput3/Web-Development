@@ -6,4 +6,14 @@ function OTP(num) {
     }
     return otp;
 }
-console.log(OTP(6));
+
+let generateOtpBtn = document.querySelector("#generateOtpBtn");
+
+generateOtpBtn.addEventListener("click", () => {
+    let otpValue = document.querySelector("#otpValue");
+    otpValue.textContent = OTP(6);
+
+    const otpDisplay = document.querySelector("#otpDisplay");
+    otpDisplay.classList.remove("d-none");
+})
+
