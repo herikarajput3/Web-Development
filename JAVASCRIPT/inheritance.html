@@ -9,41 +9,47 @@
 
 <body>
     <script>
+        // Base class
         class Animal {
             constructor(name) {
-                this.name = name
+                this.name = name;
             }
             eat() {
                 return `${this.name} is eating`;
             }
         }
 
-        class Dog {
-            constructor(name) {
-                this.name = name
+        // Dog class extending Animal
+        class Dog extends Animal {
+            constructor(name, breed) {
+                super(name);
+                this.breed = breed;
             }
-            eat() {
-                return `${this.name} is eating`;
-            }
-        }
-
-        class Cat {
-            constructor(name) {
-                this.name = name
-            }
-            eat() {
-                return `${this.name} is eating`;
+            bark() {
+                return `${this.name} is barking`;
             }
         }
 
-        const animal1 = new Animal("animal")
-        const animal2 = new Dog("dog")
-        const animal3 = new Cat("cat")
-        console.log(animal1.eat());
-        console.log(animal2.eat());
-        console.log(animal3.eat());
+        // Cat class extending Animal
+        class Cat extends Animal {
+            constructor(name, color) {
+                super(name);
+                this.color = color;
+            }
+            meow() {
+                return `${this.name} is meowing`;
+            }
+        }
 
+        const generic = new Animal("Animal");
+        const dog = new Dog("Max", "Labrador");
+        const cat = new Cat("Milo", "Black");
 
+        console.log(generic.eat());
+        console.log(dog.eat());
+        console.log(dog.bark());
+        console.log(cat.eat());
+        console.log(cat.meow()); 
     </script>
 </body>
 

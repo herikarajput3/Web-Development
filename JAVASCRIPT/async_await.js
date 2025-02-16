@@ -11,9 +11,9 @@ async function getData() {
     const result = await fetch(url);
     const data = await result.json();
 
-    data.forEach(element => {
-        console.log(element.firstname + " "+ element.lastname);
-        
+    data.forEach((element, index) => {
+        console.log(element.firstname + " " + element.lastname + " " + (index + 1));
+
     });
 }
 
