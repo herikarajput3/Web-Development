@@ -21,9 +21,9 @@
 
         // Dog class extending Animal
         class Dog extends Animal {
-            constructor(name, breed) {
+            constructor(name, color) {
                 super(name);
-                this.breed = breed;
+                this.color = color;
             }
             bark() {
                 return `${this.name} is barking`;
@@ -42,8 +42,8 @@
         }
 
         const generic = new Animal("Animal");
-        const dog = new Dog("Max", "Labrador");
-        const cat = new Cat("Milo", "Black");
+        const dog = new Dog("Dog", "Brown");
+        const cat = new Cat("Cat", "Black");
 
         console.log(generic.eat());
         console.log(dog.eat());
