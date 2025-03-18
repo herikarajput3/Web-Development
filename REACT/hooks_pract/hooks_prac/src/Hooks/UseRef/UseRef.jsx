@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 
 const UseRef = () => {
 
+    // const first = useRef(second) --> syntax of useRef
     const names = useRef(null)
     const handleClick = () => {
         console.log(names.current.value);
