@@ -6,7 +6,6 @@ const UseRef = () => {
     const names = useRef(null)
     const handleClick = () => {
         console.log(names.current.value);
-
     }
     return (
         <>
