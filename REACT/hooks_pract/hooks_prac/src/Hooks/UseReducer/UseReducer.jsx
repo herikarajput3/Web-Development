@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 
 const UseReducer = () => {
 
+    // const [state, dispatch] = useReducer(first, second, third) --> useReducer syntax
     const reducer = (state, action) => {
         switch (action.key) {
             case "Increment":
