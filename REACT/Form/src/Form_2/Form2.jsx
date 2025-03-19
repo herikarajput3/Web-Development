@@ -16,6 +16,8 @@ const Form = () => {
         // Make object
         const user = {
             first: data.first,
+            // used to store the values of form fields like "First Name," "Last Name," and so on. 
+            // These values are updated dynamically as the user types, using the setData function with the spread operator to preserve other existing properties.
             last: data.last,
             email: data.email,
             age: data.age,
@@ -39,6 +41,11 @@ const Form = () => {
                             <label htmlFor="firstName">First Name:</label>
                             <input type="text" className="form-control" id="firstName" placeholder="Enter your first name" onChange={(e) => { setData({ ...data, first: e.target.value }) }} value={data.first} required />
                         </div>
+                        
+                        {/* We put value={data.first} so that form value will not change until we put onChange function */}
+                        {/* target refers to the DOM element which is used to access properties like classname, value, and id */}
+                        {/* e.target refers to the input field element. -> e.target.value retrieves the current text entered in the input field. */}
+
                         <div className="form-group mb-3">
                             <label htmlFor="lastName">Last Name:</label>
                             <input type="text" className="form-control" id="lastName" placeholder="Enter your last name" onChange={(e) => { setData({ ...data, last: e.target.value }) }} value={data.last} required />
