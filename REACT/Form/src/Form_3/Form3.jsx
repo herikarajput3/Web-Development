@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 
 const Form3 = () => {
     const { register, handleSubmit, reset } = useForm();
+    // destructing of the form
     const onSubmit = (data) => {
         console.log(data);
         reset();
@@ -18,6 +19,16 @@ const Form3 = () => {
                         <div className="form-group mb-3">
                             <label htmlFor="firstName">First Name:</label>
                             <input type="text" className="form-control" id="firstName" placeholder="Enter your first name" {...register('firstName')} required />
+                            {/* register('firstName') registers the input field with the form using the key 'firstName' */}
+
+                            {/* <input {...register('firstName')} /> */}
+                            {/* Equivalent to */}
+                            {/* <input
+                                    name="firstName"
+                                    onChange={register('firstName').onChange}
+                                    onBlur={register('firstName').onBlur}
+                                    ref={register('firstName').ref}
+                                /> */}
                         </div>
 
                         <div className="form-group mb-3">
