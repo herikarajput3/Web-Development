@@ -1,0 +1,65 @@
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
+
+const Form3 = () => {
+    const { register, handleSubmit, reset } = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+        reset();
+    }
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    <form className='form-control mt-3 p-4 shadow rounded' onSubmit={handleSubmit(onSubmit)}>
+                        <h2 className="text-center mb-4">Registration Form</h2>
+
+                        <div className="form-group mb-3">
+                            <label htmlFor="firstName">First Name:</label>
+                            <input type="text" className="form-control" id="firstName" placeholder="Enter your first name" {...register('firstName')} required />
+                        </div>
+
+                        <div className="form-group mb-3">
+                            <label htmlFor="lastName">Last Name:</label>
+                            <input type="text" className="form-control" id="lastName" placeholder="Enter your last name" {...register('lastName')} required />
+                        </div>
+
+                        <div className="form-group mb-3">
+                            <label htmlFor="email">Email:</label>
+                            <input type="email" className="form-control" id="email" placeholder="Enter your email" {...register('email')} required />
+                        </div>
+
+                        <div className="form-group mb-3">
+                            <label htmlFor="age">Age:</label>
+                            <input type="number" className="form-control" id="age" placeholder="Enter your age" min="1" {...register('age')} required />
+                        </div>
+
+                        <div className="form-group mb-3">
+                            <label htmlFor="password">Password:</label>
+                            <input type="password" className="form-control" id="password" placeholder="Enter your password" {...register('password')} required />
+                        </div>
+
+                        <div className="form-group mb-3">
+                            <label htmlFor="confirmPassword">Confirm Password:</label>
+                            <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm your password" {...register('confirmPassword')} required />
+                        </div>
+
+                        <div className="form-group mb-3">
+                            <label htmlFor="gender">Gender:</label>
+                            <select className="form-control" id="gender" {...register('gender')} required>
+                                <option value="" disabled>Select your gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" className="btn btn-outline-primary btn-block" >Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Form3;
