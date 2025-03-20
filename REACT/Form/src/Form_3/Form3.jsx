@@ -5,7 +5,15 @@ import { useForm } from 'react-hook-form';
 
 const Form3 = () => {
     const { register, handleSubmit, reset } = useForm();
-    // destructing of the form
+
+    // destructing of the form: Instead of taking the whole box (useForm()), you are picking just the tools you need from it. This is called destructuring.
+
+    // const formTools = useForm(); // You take the whole box.
+    // const register = formTools.register; // Pick the `register` tool.
+    // const handleSubmit = formTools.handleSubmit; // Pick the `handleSubmit` tool.
+    // const reset = formTools.reset; // Pick the `reset` tool.
+    // --> Here we have to take a variable in which we take whole properties of useForm(); then we pick one by one in it.
+
     const onSubmit = (data) => {
         console.log(data);
         reset();
@@ -26,7 +34,7 @@ const Form3 = () => {
                             {/* <input {...register('firstName')} /> */}
 
                             {/* Equivalent to */}
-                            
+
                             {/* <input
                                     name="firstName"
                                     onChange={register('firstName').onChange}
