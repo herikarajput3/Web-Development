@@ -40,7 +40,9 @@ const Form3 = () => {
                                     onChange={register('firstName').onChange}
                                     onBlur={register('firstName').onBlur}
                                     ref={register('firstName').ref}
-                                /> */}
+                                /> 
+                                --> It adds all the necessary attributes to the input field.
+                            */}
                         </div>
 
                         <div className="form-group mb-3">
