@@ -1,38 +1,13 @@
 {
   "posts": [
     {
-      "id": "1",
-      "title": "a title",
-      "views": 100
-    },
-    {
-      "id": "2",
-      "title": "another title",
-      "views": 200
-    },
-    {
-      "id": "5550",
-      "FName": "abhay"
-    },
-    {
-      "id": "9d4b",
-      "FName": "abhay"
-    },
-    {
       "id": "666",
       "FName": "abhay"
     },
     {
-      "id": "666",
-      "FName": "abhay"
-    },
-    {
-      "id": "1",
-      "FName": "Herika"
-    },
-    {
-      "id": "111",
-      "FName": "Herika"
+      "id": "344",
+      "FName": "Herika",
+      "LName": "Rajput"
     }
   ]
 }

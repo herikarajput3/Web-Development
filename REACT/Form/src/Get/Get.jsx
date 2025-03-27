@@ -1,80 +1,100 @@
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import axios from 'axios'
-
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const Get = () => {
-    const { register, handleSubmit } = useForm()
-    const [data, setData] = useState();
-
-    // const api = "http://localhost:3000/posts"
+    const { register, handleSubmit } = useForm();
+    const [getDatas, setDatas] = useState([]);
 
     const OnSubmit = async (data) => {
         try {
-            const result = await axios.post("http://localhost:3000/posts", data)
+            const result = await axios.post("http://localhost:3000/posts", data);
             console.log(result);
-
         } catch (error) {
             console.log(error);
-
         }
+    };
 
-    }
-
-    const show = async () => {
+    const getData = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/posts")
-            setData(response.data)
-            console.log(response.data);
-            // setData(response.data);
+            const result = await axios.get("http://localhost:3000/posts");
+            console.log(result.data);
+            setDatas(result.data);
         } catch (error) {
             console.error("Error:", error);
         }
-    }
-
-    // const deleteData = async (id) => {
-    //     try {   
-    //         await axios.delete(`http://localhost:3000/posts/${id}`)
-    //         console.log(`Deleted item with id: ${id}`);
-    //     } catch (error) {
-    //         console.error("Error:", error);
-    //     }
-    // }
-
-    // const OnSubmit = async (data) => {
-    //     try {
-    //         const response = await fetch("http://localhost:3000/posts", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify(data),
-    //         });
-    //         const result = await response.json();
-    //         console.log(result);
-    //     } catch (error) {
-    //         console.error("Error:", error);
-    //     }
-    // };
-
+    };
 
     return (
         <>
             <div className="container-fluid">
                 <div className="row justify-content-center">
                     <div className="col-md-4">
-                        <form className='' onSubmit={handleSubmit(OnSubmit)}>
-                            <input className='form-control my-2' placeholder='Enter Id' type="text" {...register('id', { required: true })} />
-                            <input className='form-control my-2' placeholder='Enter FName' type="text" {...register('FName', { required: true })} />
-                            <button className='form-control my-2 btn btn-outline-info fw-bold text-uppercase' type='submit'>submit</button>
+                        {/* Form to Submit Data */}
+                        <form onSubmit={handleSubmit(OnSubmit)}>
+                            <input
+                                className="form-control my-2"
+                                placeholder="Enter Id"
+                                type="text"
+                                {...register('id', { required: true })}
+                            />
+                            <input
+                                className="form-control my-2"
+                                placeholder="Enter FName"
+                                type="text"
+                                {...register('FName', { required: true })}
+                            />
+                            <input
+                                className="form-control my-2"
+                                placeholder="Enter LName"
+                                type="text"
+                                {...register('LName', { required: true })}
+                            />
+                            <button
+                                className="form-control my-2 btn btn-outline-info fw-bold text-uppercase"
+                                type="submit"
+                            >
+                                Submit
+                            </button>
                         </form>
 
+                        {/* Button to Fetch Data */}
+                        <button
+                            className="form-control my-2 btn btn-outline-primary fw-bold text-uppercase"
+                            onClick={getData}
+                        >
+                            Show Data
+                        </button>
+
+                        {/* Table to Display Data */}
+                        {getDatas.length > 0 && (
+                            <table className="table table-bordered mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>FName</th>
+                                        <th>LName</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {getDatas.map((data, index) => (
+                                        <tr key={index}>
+                                            <td>{data.id}</td>
+                                            <td>{data.FName}</td>
+                                            <td>{data.LName}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )}
                     </div>
                 </div>
             </div>
-
         </>
-    )
-}
+    );
+};
 
-export default Get
+export default Get;
+
 
 // npx json-server db.json
