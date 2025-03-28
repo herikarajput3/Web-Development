@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -25,6 +25,11 @@ const Get = () => {
         }
     };
 
+    useEffect(() => {
+        getData();
+    }, []);
+
+
     return (
         <>
             <div className="container-fluid">
@@ -44,12 +49,6 @@ const Get = () => {
                                 type="text"
                                 {...register('FName', { required: true })}
                             />
-                            <input
-                                className="form-control my-2"
-                                placeholder="Enter LName"
-                                type="text"
-                                {...register('LName', { required: true })}
-                            />
                             <button
                                 className="form-control my-2 btn btn-outline-info fw-bold text-uppercase"
                                 type="submit"
@@ -67,26 +66,29 @@ const Get = () => {
                         </button>
 
                         {/* Table to Display Data */}
-                        {getDatas.length > 0 && (
-                            <table className="table table-bordered mt-3">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>FName</th>
-                                        <th>LName</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {getDatas.map((data, index) => (
-                                        <tr key={index}>
-                                            <td>{data.id}</td>
-                                            <td>{data.FName}</td>
-                                            <td>{data.LName}</td>
+                        {
+                            getDatas.length > 0 ? (
+                                <table className="table table-bordered mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Action</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        )}
+                                    </thead>
+                                    <tbody>
+                                        {getDatas.map((data, index) => (
+                                            <tr key={index}>
+                                                <td>{data.id}</td>
+                                                <td>{data.FName}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            ) : (
+                                <p>No Data Found.</p>
+                            )
+                        }
                     </div>
                 </div>
             </div>
