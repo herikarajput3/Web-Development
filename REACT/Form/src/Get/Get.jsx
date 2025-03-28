@@ -3,13 +3,17 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 const Get = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const [getDatas, setDatas] = useState([]);
 
     const OnSubmit = async (data) => {
         try {
             const result = await axios.post("http://localhost:3000/posts", data);
             console.log(result);
+
+            reset();
+            getDatas();
+
         } catch (error) {
             console.log(error);
         }
@@ -39,13 +43,7 @@ const Get = () => {
                         <form onSubmit={handleSubmit(OnSubmit)}>
                             <input
                                 className="form-control my-2"
-                                placeholder="Enter Id"
-                                type="text"
-                                {...register('id', { required: true })}
-                            />
-                            <input
-                                className="form-control my-2"
-                                placeholder="Enter FName"
+                                placeholder="Enter Name"
                                 type="text"
                                 {...register('FName', { required: true })}
                             />
@@ -79,14 +77,20 @@ const Get = () => {
                                     <tbody>
                                         {getDatas.map((data, index) => (
                                             <tr key={index}>
-                                                <td>{data.id}</td>
+                                                <td>{index + 1}</td>
                                                 <td>{data.FName}</td>
+                                                <td>
+                                                    <button className="btn btn-warning">Edit</button>
+                                                    <button className="btn btn-danger ms-2">Delete</button>
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                             ) : (
-                                <p>No Data Found.</p>
+                                <tr>
+                                    <td colSpan={3} className="text-center text-danger">No Data found</td>
+                                </tr>
                             )
                         }
                     </div>
