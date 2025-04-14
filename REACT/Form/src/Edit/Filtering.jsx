@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Get = () => {
+const Filtering = () => {
     const { register, handleSubmit, reset } = useForm();
     const [getDatas, setDatas] = useState([]);
     const [search, setSearch] = useState("");
@@ -11,8 +11,8 @@ const Get = () => {
 
     const OnSubmit = async (data) => {
         try {
-            const result = await axios.post("http://localhost:3000/posts", data);
-            console.log(result);
+            // const result = await axios.post("https://jsonplaceholder.typicode.com/users", data);
+            // console.log(result);
             reset();
             getData(); // Fetch updated data after submission
         } catch (error) {
@@ -22,7 +22,7 @@ const Get = () => {
 
     const getData = async () => {
         try {
-            const result = await axios.get("http://localhost:3000/posts");
+            const result = await axios.get("https://jsonplaceholder.typicode.com/users");
             console.log(result.data);
             setDatas(result.data);
         } catch (error) {
@@ -30,24 +30,28 @@ const Get = () => {
         }
     };
 
-    const handleDel = async (id) => {
-        try {
-            await axios.delete(`http://localhost:3000/posts/${id}`);
-            getData(); // Fetch updated data after deletion
-            alert("Data deleted successfully!");
-        } catch (error) {
-            console.error("Error:", error);
-        }
+    const city = getDatas.map((item) => item.address.city);
+
+    const handleChange = (e) => {
+        setSearch(e.target.value.toLowerCase());
     };
 
-    const handleSearch = (e) => {
-        setSearch(e.target.value);
-    };
+    // Filter data by city
 
-    // Corrected filtering logic
-    const filterData = getDatas.filter((data) =>
-        data.FName.toLowerCase().includes(search.toLowerCase())
+    // const filterData = getDatas.filter((item) => {
+    //     const city = item.address.city.includes(search);
+    //     return city;
+    // }
+    // );
+
+    const filterData = getDatas.filter((item) =>
+        item.address.city.toLowerCase().includes(search)
     );
+
+
+    const handleDel = (id) => {
+        alert(`Delete user with ID: ${id}`);
+    };
 
     useEffect(() => {
         getData();
@@ -57,37 +61,49 @@ const Get = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-12">
-                    {/* Form to Submit Data */}
                     <form onSubmit={handleSubmit(OnSubmit)}>
-
-                        <input
+                        {/* <input
                             className="form-control my-2"
                             placeholder="Enter Name"
                             type="text"
-                            {...register("FName", { required: true })}
+                            {...register("name", { required: true })}
                         />
                         <button
                             className="form-control my-2 btn btn-outline-info fw-bold text-uppercase"
                             type="submit"
                         >
                             Submit
-                        </button>
+                        </button> */}
                         <hr />
+
+                        {/* Search Input */}
                         <input
                             className="form-control my-2"
-                            placeholder="Search Name"
+                            placeholder="Search by City"
                             type="text"
-                            onChange={handleSearch}
+                            value={search}
+                            onChange={handleChange}
                         />
+
+                        {/* Dropdown (City) */}
+                        <select className="form-control my-2" onChange={handleChange}>
+                            <option value="">Select city</option>
+                            {city.map((item) => (
+                                <option value={item}>
+                                    {item}
+                                </option>
+                            ))}
+                        </select>
                     </form>
 
                     {/* Table to Display Data */}
-                    {getDatas.length > 0 ? (
+                    {filterData.length > 0 ? (
                         <table className="table table-bordered mt-3">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>City</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -95,7 +111,8 @@ const Get = () => {
                                 {filterData.map((data, index) => (
                                     <tr key={data.id}>
                                         <td>{index + 1}</td>
-                                        <td>{data.FName}</td>
+                                        <td>{data.name}</td>
+                                        <td>{data.address.city}</td>
                                         <td>
                                             <button
                                                 className="btn btn-warning"
@@ -123,4 +140,4 @@ const Get = () => {
     );
 };
 
-export default Get;
+export default Filtering;

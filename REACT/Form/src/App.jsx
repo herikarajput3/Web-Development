@@ -8,6 +8,7 @@ import Axios from './Axios/Axios';
 import Get from './Get/Get';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Edit from './Edit/Edit';
+import Filtering from './Edit/Filtering';
 
 // Create or import Layout, Home, and Edit components
 const Layout = ({ children }) => {
@@ -52,7 +53,8 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/edit/:id" element={<Edit />} />
+            {/* <Route path="/edit/:id" element={<Edit />} /> */}
+            <Route path="/edit/:id" element={<Filtering />} />
           </Routes>
         </Layout>
       </div>
