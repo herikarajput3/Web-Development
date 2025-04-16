@@ -9,6 +9,7 @@ import Get from './Get/Get';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Edit from './Edit/Edit';
 import Filtering from './Edit/Filtering';
+import Counter from './Redux/Counter';
 
 // Create or import Layout, Home, and Edit components
 const Layout = ({ children }) => {
@@ -35,12 +36,12 @@ function App() {
     <Router>
       <div
         className="bg-light"
-        style={{
-          height: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+      // style={{
+      //   height: '100vh',
+      //   display: 'flex',
+      //   alignItems: 'center',
+      //   justifyContent: 'center',
+      // }}
       >
         {/* Uncomment any component you want to render */}
         {/* <Form /> */}
@@ -52,9 +53,11 @@ function App() {
 
         <Layout>
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
             {/* <Route path="/edit/:id" element={<Edit />} /> */}
-            <Route path="/edit/:id" element={<Filtering />} />
+            {/* <Route path="/edit/:id" element={<Filtering />} /> */}
+            <Route path="/" element={<Counter />} />
+
           </Routes>
         </Layout>
       </div>
