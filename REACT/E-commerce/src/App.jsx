@@ -1,19 +1,19 @@
-import { useState } from 'react'
 import './App.css'
+import Login from './Pages/Auth/Login';
 import Register from './Pages/Auth/Register'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 function App() {
 
   return (
     <>
       {/* <Register /> */}
-      <BrowserRouter>
+      <Router>
         <Routes>
-          <Route path="/" element={<Register />} />
-          {/* Add other routes as needed */}
+          <Route path="/" element={<Login />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   )
 }
