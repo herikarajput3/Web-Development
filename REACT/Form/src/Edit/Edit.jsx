@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const Edit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({ FName: '' });
+    const [formData, setFormData] = useState({ FName: '' }); //to hold form data
     const [loading, setLoading] = useState(true);
 
     // Fetch data for the given ID
