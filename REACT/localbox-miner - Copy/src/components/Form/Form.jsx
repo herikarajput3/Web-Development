@@ -6,51 +6,78 @@ import { toast, ToastContainer } from "react-toastify";
 const Form = () => {
     const [users, setUsers] = useState([]);
     const { register, handleSubmit, reset, setValue } = useForm();
-    const [editIndex, setEditIndex] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(null);
 
-    useEffect(() => {
-        const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-        setUsers(storedUsers);
-    }, []);
+    const fetchUsers = async () => {
+        try {
+            const response = await axios.get("http://localhost:3000/users");
+            setUsers(response.data);
+        } catch (error) {
+            console.error("Error fetching users:", error);
+            toast.error("Error fetching users");
+        }
 
-    useEffect(() => {
-        localStorage.setItem("users", JSON.stringify(users));
-    }, [users]);
+    };
 
     const onSubmit = async (data) => {
-        const updatedUsers = [...users];
-        if (editIndex !== null) {
-            updatedUsers[editIndex] = { name: data.name, email: data.email };
-            setEditIndex(null);
-            toast.success("User updated successfully!");
-        } else {
-            updatedUsers.push({ name: data.name, email: data.email });
-            toast.success("User added successfully!");
+        const userData = {
+            name: data.name,
+            email: data.email,
+        };
+
+        // console.log("User Data:", userData);
+
+        try {
+            if (selectedUser) {
+                // EDIT USER
+                const response = await axios.put(`http://localhost:3000/users/${selectedUser}`, userData);
+                // console.log("Response:", response);
+                toast.success("User updated successfully!");
+            } else {
+                // CREATE NEW USER
+                const response = await axios.post("http://localhost:3000/users", userData);
+                // console.log("Response:", response);
+                setUsers([...users, response.data]);
+                toast.success("User added successfully!");
+            }
+            fetchUsers();
+            reset();
+            setSelectedUser(null);
+        } catch (error) {
+            console.error("Error saving user:", error);
+            toast.error("Error saving user");
         }
-        setUsers(updatedUsers);
-        reset();
-
     };
 
-    const editUser = (index) => {
-        setValue("name", users[index].name);
-        setValue("email", users[index].email);
-        setEditIndex(index);
+    const editUser = (user) => {
+        console.log("Editing User:", user);
+        setSelectedUser(user.id);
+        setValue("name", user.name);
+        setValue("email", user.email);
     };
 
-    const deleteUser = (index) => {
-        const updatedUsers = [...users];
-        updatedUsers.splice(index, 1);
-        setUsers(updatedUsers);
-        toast.success("User deleted successfully!");
+    const deleteUser = async (id) => {
+        try {
+            const response = await axios.delete(`http://localhost:3000/users/${id}`);
+            console.log("Response:", response);
+            toast.success("User deleted successfully!");
+            fetchUsers();
+        } catch (error) {
+            console.error("Error deleting user:", error);
+            toast.error("Error deleting user");
+        }
     };
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
 
     return (
         <>
             <div className="container mt-5 w-25">
                 {/* <h2 className="text-center fw-bold mb-4">User Form</h2> */}
                 <h2 className="text-center fw-bold mb-4">
-                    {editIndex !== null ? "Edit User" : "User Form"}
+                    {selectedUser ? "Edit User" : "User Form"}
                 </h2>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="shadow p-4 rounded bg-light">
@@ -76,11 +103,7 @@ const Form = () => {
 
                     {/* <button type="submit" className="btn btn-success w-100">Save</button> */}
                     <button type="submit" className="w-100 btn">
-                        {editIndex !== null ? (
-                            <span className="btn btn-warning w-100">Update</span>
-                        ) : (
-                            <span className="btn btn-success w-100">Save</span>
-                        )}
+                        {selectedUser ? <span className="btn btn-warning w-100">Update</span> : <span className="btn btn-success w-100">Save</span>}
                     </button>
                 </form>
             </div>
@@ -104,12 +127,11 @@ const Form = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <button className="btn btn-warning me-2" onClick={() => editUser(index)}>Edit</button>
-                                    <button className="btn btn-danger" onClick={() => deleteUser(index)}>Delete</button>
+                                    <button className="btn btn-warning me-2" onClick={() => editUser(user)}>Edit</button>
+                                    <button className="btn btn-danger" onClick={() => deleteUser(user.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
-                        {users.length === 0 && <tr><td colSpan="4" className="text-center text-muted">No users added yet.</td></tr>}
                     </tbody>
                 </table>
 
