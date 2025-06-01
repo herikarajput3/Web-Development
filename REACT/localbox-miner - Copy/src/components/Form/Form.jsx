@@ -50,23 +50,68 @@ const Form = () => {
     };
 
     const editUser = (user) => {
-        console.log("Editing User:", user);
+        // console.log("Editing User:", user);
         setSelectedUser(user.id);
         setValue("name", user.name);
         setValue("email", user.email);
     };
 
     const deleteUser = async (id) => {
+        const deletedUser = users.find(user => user.id === id); // Find the user being deleted
+
         try {
-            const response = await axios.delete(`http://localhost:3000/users/${id}`);
-            console.log("Response:", response);
-            toast.success("User deleted successfully!");
-            fetchUsers();
+            // Remove user locally (Optimistic Deletion)
+            setUsers(users.filter(user => user.id !== id));
+
+            // Show Undo Toast
+            toast(
+                <div>
+                    User deleted!
+                    <button
+                        onClick={() => undoDelete(deletedUser)}
+                        style={{
+                            background: "none",
+                            border: "none",
+                            color: "blue",
+                            cursor: "pointer",
+                            textDecoration: "underline",
+                        }}
+                    >
+                        Undo
+                    </button>
+                </div>,
+                { autoClose: 5000 } // Closes toast after 5 seconds
+            );
+
+            // Send DELETE request to the server
+            await axios.delete(`http://localhost:3000/users/${id}`);
+            console.log("User deleted successfully!");
         } catch (error) {
             console.error("Error deleting user:", error);
             toast.error("Error deleting user");
+
+            // Re-add the deleted user in case of an error
+            setUsers([...users, deletedUser]);
         }
     };
+
+    // Undo Delete Function
+    const undoDelete = async (deletedUser) => {
+        try {
+            // Re-add the user to the database
+            const response = await axios.post("http://localhost:3000/users", deletedUser);
+            console.log("Undo successful:", response);
+
+            // Update the users list
+            fetchUsers();
+            toast.success("User restored successfully!");
+        } catch (error) {
+            console.error("Error restoring user:", error);
+            toast.error("Error restoring user");
+        }
+    };
+
+
 
     useEffect(() => {
         fetchUsers();
@@ -142,3 +187,5 @@ const Form = () => {
 };
 
 export default Form;
+
+// npx json-server --watch db.json
