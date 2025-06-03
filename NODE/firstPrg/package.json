@@ -1,0 +1,11 @@
+{
+  "name": "firstprg",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Herika Rajput",
+  "license": "ISC",
+  "description": ""
+}
