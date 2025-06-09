@@ -47,7 +47,7 @@ const server = http.createServer((req, res) => {
             fileName = "./contact.html";
             break;
         default:
-            // res.end("404 page not found"); //why it is not working?
+            // res.end("404 page not found"); 
             break;
     }
 
