@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon express.js"
   },
   "author": "Herika Rajput",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "express": "^5.1.0",
     "moongoose": "^0.0.5",
     "nodemon": "^3.1.10"
   }
