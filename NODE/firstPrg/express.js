@@ -1,15 +1,18 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
 const port = 3000
-const mongoose = require('mongoose');
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const mongoose = require('mongoose');
+
 mongoose
     .connect('mongodb://localhost:27017/firstDb')
-    .then(() => console.log("Database connected successfully"))
-    .catch((err) => console.log("Database is not connected", err))
+    .then(() => console.log("Connected to DB"))
+    .catch((err) => console.log(err))
 
 const userSchema = new mongoose.Schema({
     name: String,
@@ -17,102 +20,113 @@ const userSchema = new mongoose.Schema({
     password: String
 })
 
-const userModel = mongoose.model('userModel', userSchema);
+const User = mongoose.model('User', userSchema);
 
+//Create a new user
 app.post('/register', async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        const user = await userModel.create({ name, email, password });
-        if (!user) {
-            res.status(400).json({ message: "User not created" })
+        const user = await User.create(req.body);
+
+        if (user) {
+            res.status(201).json({ message: 'User registered successfully' });
         } else {
-            res.status(201).json({ message: "User created successfully", user });
+            res.status(400).json({ message: 'User registration failed' });
         }
+
     } catch (error) {
-        console.log("Something went wrong", error);
-        res.status(500).json({ message: "Something went wrong" })
+        res.status(500).json({ message: 'Something went wrong' });
     }
-});
+})
+
+// Get all users
 
 app.get('/users', async (req, res) => {
     try {
-        const users = await userModel.find();
-        if (!users) {
-            res.status(400).json({ message: "Error while fetching users" })
+        const userData = await User.find();
+
+        if (userData) {
+            res.status(200).json({ message: 'Users data fetched successfully', userData });
         } else {
-            res.status(200).json({ message: "Users fetched successfully", users });
+            res.status(400).json({ message: 'Failed to fetch users data' });
         }
+
     } catch (error) {
-        console.log("Something went wrong", error);
-        res.status(500).json({ message: "Something went wrong" })
+        res.status(500).json({ message: 'Something went wrong' });
     }
 })
+
+// Get single user
 
 app.get('/users/:id', async (req, res) => {
     try {
-        const { id } = req.params;
-        const userData = await userModel.findById(id);
-        if (!userData) {
-            res.status(400).json({ message: "Error while fetching the user" })
-        } else {
-            res.status(200).json({ message: "User fetched successfully", userData });
-        }
-    } catch (error) {
-        console.log("Something went wrong", error);
-        res.status(500).json({ message: "Something went wrong" })
-    }
-})
+        const { id } = req.params
+        const userData = await User.findById(id);
 
-app.delete('/users/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-        const userData = await userModel.findByIdAndDelete(id);
         if (userData) {
-            res.json({
-                success: true,
-                message: "user deleted"
-            })
+            res.status(200).json({ message: 'User data fetched successfully', userData });
         } else {
-            res.json({
-                success: false,
-                message: "user not deleted"
-            })
+            res.status(400).json({ message: 'Failed to fetch user data' });
         }
+
     } catch (error) {
-        res.json(error.message);
-        console.error("error", error)
+        res.status(500).json({ message: 'Something went wrong' });
     }
 })
 
-app.put('/users/:id', async (req, res) => {
+// Update user
+
+app.put('/userUpdate/:id', async (req, res) => {
     try {
-        const id = req.params.id;
-        const { name, email, password } = req.body;
-        const userData = await userModel.findByIdAndUpdate(
-            {
-                _id: id
-            },
-            {
-                name, email, password
-            }
-        );
+        const { id } = req.params
+        const userData = await User.findByIdAndUpdate(id, req.body);
+
         if (userData) {
-            res.json({
-                success: true,
-                message: "user updated successfully"
-            })
+            res.status(200).json({ message: 'User data updated successfully' });
         } else {
-            res.json({
-                success: false,
-                message: "user not updated"
-            })
+            res.status(400).json({ message: 'Failed to update user data' });
         }
 
     } catch (error) {
-        res.json(error.message);
-        console.error("error", error)
+        res.status(500).json({ message: 'Something went wrong' });
     }
 })
+
+// Delete single user
+
+app.delete('/userDelete/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const userData = await User.findByIdAndDelete(id);
+
+        if (userData) {
+            res.status(200).json({ message: 'User deleted successfully', userData });
+        } else {
+            res.status(400).json({ message: 'Failed to delete the user' });
+        }
+
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+})
+
+// Delete all users
+app.delete('/usersDelete', async (req, res) => {
+    try {
+        const userData = await User.deleteMany();
+        if (userData) {
+            res.status(200).json({ message: 'Users deleted successfully', userData });
+        } else {
+            res.status(400).json({ message: 'Failed to delete users' });
+        }
+
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+})
+
+
+
+
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
