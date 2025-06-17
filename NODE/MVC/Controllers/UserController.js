@@ -42,7 +42,6 @@ exports.userLogin = async (req, res) => {
 exports.userFind = async (req, res) => {
     try {
         const users = await User.find();
-
         if (users) {
             res.status(200).json({ message: "Users fetched Successfully", users });
         } else {
