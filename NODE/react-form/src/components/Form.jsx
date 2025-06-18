@@ -18,7 +18,7 @@ const Form = () => {
     return (
         <div className="container w-25 mt-5">
             <h2 className="text-center mb-3">User Registration</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
                     <input type="text" className="form-control" id="name"
@@ -33,6 +33,16 @@ const Form = () => {
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" className="form-control" id="password"
                         {...register('password', { required: true })} />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor="image" className="form-label">Upload Image</label>
+                    <input type="file" className="form-control" id="image"
+                        {...register('image', { required: true })} />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor="textFile" className="form-label">Upload Document</label>
+                    <input type="file" className="form-control" id="textFile"
+                        {...register('textFile', { required: true })} />
                 </div>
                 <button type="submit" className="btn btn-outline-dark p-2">Register</button>
             </form>
