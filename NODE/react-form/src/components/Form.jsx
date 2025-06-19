@@ -7,18 +7,18 @@ const Form = () => {
 
     const onSubmit = async (data) => {
         try {
-            const res = await axios.post('http://localhost:3000/register', data);
-            // console.log("Form data: ", res.data);
+            const res = await axios.post('http://localhost:3000/image', data);
+            console.log("Form data: ", res.data);
             reset();
         } catch (error) {
-            console.error("Error: ", error);
+            console.error("Error uploading user data: ", error);
         }
 
     };
     return (
         <div className="container w-25 mt-5">
             <h2 className="text-center mb-3">User Registration</h2>
-            <form onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
+            <form onSubmit={handleSubmit(onSubmit)} >
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
                     <input type="text" className="form-control" id="name"
@@ -39,11 +39,11 @@ const Form = () => {
                     <input type="file" className="form-control" id="image"
                         {...register('image', { required: true })} />
                 </div>
-                <div className='mb-3'>
+                {/* <div className='mb-3'>
                     <label htmlFor="textFile" className="form-label">Upload Document</label>
                     <input type="file" className="form-control" id="textFile"
                         {...register('textFile', { required: true })} />
-                </div>
+                </div> */}
                 <button type="submit" className="btn btn-outline-dark p-2">Register</button>
             </form>
         </div>

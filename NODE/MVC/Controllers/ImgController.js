@@ -2,10 +2,12 @@ const ImageSchema = require("../Model/ImageSchema");
 
 exports.ImageController = async (req, res) => {
     try {
-        const { name, image } = req.body;
+        const { name, email, password, image } = req.body;
 
         const img = await ImageSchema.create({
             name,
+            email,
+            password,
             image: req?.file?.filename,
         })
 
