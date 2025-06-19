@@ -41,10 +41,11 @@ const Form = () => {
                             <label htmlFor="firstName">First Name:</label>
                             <input type="text" className="form-control" id="firstName" placeholder="Enter your first name" onChange={(e) => { setData({ ...data, first: e.target.value }) }} value={data.first} required />
                         </div>
-                        
+
                         {/* We put value={data.first} so that form value will not change until we put onChange function */}
                         {/* target refers to the DOM element which is used to access properties like classname, value, and id */}
                         {/* e.target refers to the input field element. -> e.target.value retrieves the current text entered in the input field. */}
+                        {/* when we don't write ...data then this thing is happen: This replaces the entire data object with a new object that contains only the fname field and value of lname, gender, etc will be lost */}
 
                         <div className="form-group mb-3">
                             <label htmlFor="lastName">Last Name:</label>
