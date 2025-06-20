@@ -14,21 +14,21 @@ const Form = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Make object
-        const user = {
-            first: data.first,
-            // used to store the values of form fields like "First Name," "Last Name," and so on. 
-            // These values are updated dynamically as the user types, using the setData function with the spread operator to preserve other existing properties.
-            last: data.last,
-            email: data.email,
-            age: data.age,
-            password: data.password,
-            confirmPassword: data.confirmPassword,
-            gender: data.gender
-        };
+        // const user = {
+        //     first: data.first,
+        //     // used to store the values of form fields like "First Name," "Last Name," and so on. 
+        //     // These values are updated dynamically as the user types, using the setData function with the spread operator to preserve other existing properties.
+        //     last: data.last,
+        //     email: data.email,
+        //     age: data.age,
+        //     password: data.password,
+        //     confirmPassword: data.confirmPassword,
+        //     gender: data.gender
+        // };
         // Clear form data after submission
         setData({ first: "", last: "", email: "", age: "", password: "", confirmPassword: "", gender: "" });
         // Display success message
-        console.log(user);
+        console.log(data);
     }
     return (
         <div className="container">

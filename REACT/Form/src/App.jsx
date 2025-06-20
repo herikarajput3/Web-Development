@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Edit from './Edit/Edit';
 import Filtering from './Edit/Filtering';
 import Counter from './Redux/Counter';
-import Register from './Firebase/Register';
+// import Register from './Firebase/Register';
 
 // Create or import Layout, Home, and Edit components
 const Layout = ({ children }) => {
@@ -46,7 +46,7 @@ function App() {
       >
         {/* Uncomment any component you want to render */}
         {/* <Form /> */}
-        {/* <Form2 /> */}
+        <Form2 />
         {/* <Form3 /> */}
         {/* <Axios /> */}
         {/* <Get />
@@ -57,7 +57,7 @@ function App() {
             {/* <Route path="/" element={<Home />} /> */}
             {/* <Route path="/edit/:id" element={<Edit />} /> */}
             {/* <Route path="/edit/:id" element={<Filtering />} /> */}
-            <Route path="/register" element={<Register />} />
+            {/* <Route path="/register" element={<Register />} /> */}
             {/* <Route path="/" element={<Counter />} /> */}
 
           </Routes>
