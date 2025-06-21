@@ -1,19 +1,10 @@
 {
   "users": [
     {
-      "id": "ca2c",
+      "id": "ba97",
       "fname": "Herika",
-      "lname": "Rajput"
-    },
-    {
-      "id": "ad7b",
-      "fname": "Abhi",
-      "lname": "Bakrochiya"
-    },
-    {
-      "id": "f8f1",
-      "fname": "Krish",
-      "lname": "Bakrochiya"
+      "lname": "Rajput",
+      "gender": "female"
     }
   ]
 }
