@@ -12,5 +12,15 @@
       "lname": "Bakrochiya",
       "gender": "male"
     }
+  ],
+  "city": [
+    {
+      "id": "98a5",
+      "city": "Goa"
+    },
+    {
+      "id": "e2fb",
+      "city": "Pune"
+    }
   ]
 }

@@ -5,9 +5,10 @@ import { useForm } from 'react-hook-form'
 const Third_form_prac = () => {
     const [users, setUsers] = useState([])
     const [editUser, setEditUser] = useState(null)
-    const { register, handleSubmit, reset } = useForm();
+    const { register: userRegister, handleSubmit: handleUserSubmit, reset: userReset, formState: { errors } } = useForm();
+    const { register: cityRegister, handleSubmit: handleCitySubmit, reset: cityReset } = useForm();
 
-    const onSubmit = async (data) => {
+    const onSubmitUser = async (data) => {
         if (editUser) {
             const res = await axios.patch(`http://localhost:3000/users/${editUser}`, data);
             setEditUser(null);
@@ -17,7 +18,7 @@ const Third_form_prac = () => {
             await axios.post('http://localhost:3000/users', data);
             fetchUsers();
         }
-        reset({
+        userReset({
             fname: '',
             lname: '',
             gender: ''
@@ -30,7 +31,7 @@ const Third_form_prac = () => {
     }
 
     const handleEdit = (data) => {
-        reset({
+        userReset({
             fname: data.fname,
             lname: data.lname,
             gender: data.gender
@@ -43,6 +44,11 @@ const Third_form_prac = () => {
         fetchUsers();
     }
 
+    const onSubmitCity = async (data) => {
+        await axios.post('http://localhost:3000/city', data);
+        cityReset({ city: '' });
+    }
+
     useEffect(() => {
         fetchUsers()
     }, [])
@@ -50,24 +56,55 @@ const Third_form_prac = () => {
         <>
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6 offset-md-3">
-                        <form className='form-control mt-3 p-4 shadow rounded' onSubmit={handleSubmit(onSubmit)}>
+                    <div className="col-6">
+                        <form className='form-control mt-3 p-4 shadow rounded' onSubmit={handleCitySubmit(onSubmitCity)}>
                             <div className="form-group mb-3">
-                                <label htmlFor="fname" className=''>First Name</label>
-                                <input type="text" className='form-control' id='fname' {...register("fname")} />
-
+                                <label htmlFor="city" className='mb-2'>City</label>
+                                <input type="text" className="form-control mb-2" id='city' {...cityRegister("city")} />
+                                <button type="submit" className='btn btn-primary'>Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="col-6">
+                        <form className='form-control mt-3 p-4 shadow rounded' onSubmit={handleUserSubmit(onSubmitUser)}>
+                            <div className="form-group mb-3">
+                                <label htmlFor="name" className=''>Name</label>
+                                <input type="text" className='form-control' id='name' {...userRegister("name")} />
+                                {errors.name && <span className='text-danger'>Name is required</span>}
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="lname" className=''>Last Name</label>
-                                <input type="text" className='form-control' id='lname' {...register("lname")} />
+                                <label htmlFor="email" className=''>Email</label>
+                                <input type="email" className='form-control' id='email' {...userRegister("email", { pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })} />
+                                {errors.email && <span className='text-danger'>{errors.email.message}</span>}
                             </div>
                             <div className="form-group mb-3">
                                 <label htmlFor="gender" className=''>Gender</label>
-                                <select name="gender" id="gender" className='form-select' {...register("gender")}>
-                                    <option value="" disabled >Select your gender</option>
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="gender" id="gender" value={"male"}
+                                        {...userRegister("gender")} />
+                                    <label className="form-check-label" htmlFor="gender">
+                                        Male
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="gender" id="gender" value={"female"}
+                                        {...userRegister("gender")} />
+                                    <label className="form-check-label" htmlFor="gender">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="form-group mb-3">
+                                <label htmlFor="city">City</label>
+                                <select className="form-select" aria-label="Default select example" {...userRegister("city")}>
+                                    <option disabled>Select City</option>
+                                    <option value="1">One</option>
+                                    
                                 </select>
+                            </div>
+                            <div className="form-group mb-3">
+                                <label htmlFor="img">Upload Image</label>
+                                <input type="file" className='form-control' id='img' {...userRegister("img")} />
                             </div>
                             <button type='submit' className='btn btn-primary'>Submit</button>
                         </form>
