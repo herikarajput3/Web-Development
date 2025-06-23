@@ -5,6 +5,12 @@
       "fname": "Herika",
       "lname": "Rajput",
       "gender": "female"
+    },
+    {
+      "id": "c248",
+      "fname": "Abhi",
+      "lname": "Bakrochiya",
+      "gender": "male"
     }
   ]
 }
