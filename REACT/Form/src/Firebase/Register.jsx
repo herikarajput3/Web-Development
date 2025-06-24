@@ -1,7 +1,7 @@
 import { doc, setDoc } from 'firebase/firestore';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { auth, db } from '../firebase';
+// import { auth, db } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
