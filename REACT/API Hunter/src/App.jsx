@@ -1,7 +1,8 @@
-import React from 'react'
+import './App.css'
 import Home from './view/pages/home/Home'
 
-const App = () => {
+function App() {
+
   return (
     <>
       <Home />
