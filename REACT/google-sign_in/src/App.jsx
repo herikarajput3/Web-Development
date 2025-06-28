@@ -1,15 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Register from "./Register/Register";
+import Register from "./pages/Register";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Register />} />
-        {/* Add other routes as needed */}
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
