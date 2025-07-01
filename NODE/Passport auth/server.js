@@ -11,7 +11,6 @@ const LocalStrategy = require('passport-local').Strategy;
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-app.use('/', router);
 
 app.use(session({
     secret: 'Herika1212',
@@ -21,23 +20,30 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/', router);
+
 // Passport Local Strategy
-passport.use(new LocalStrategy(async (name, pwd, done) => {
-    try {
-        const user = await UserSchema.findOne({ name });
-        if (!user) {
-            return done(null, false, { message: 'Incorrect Username' });
-        }
 
-        if (user.pwd !== pwd) {
-            return done(null, false, { message: 'Incorrect Password' });
-        }
+passport.use(new LocalStrategy(
+    { usernameField: 'name', passwordField: 'pwd' },
+    async (name, pwd, done) => {
+        try {
+            const user = await UserSchema.findOne({ name });
+            if (!user) {
+                return done(null, false, { message: 'Incorrect Username' });
+            }
 
-        return done(null, user);
-    } catch (error) {
-        return done(error)
+            if (user.pwd !== pwd) {
+                return done(null, false, { message: 'Incorrect Password' });
+            }
+
+            return done(null, user);
+        } catch (error) {
+            return done(error);
+        }
     }
-}))
+));
+
 
 // Serializer
 passport.serializeUser((user, done) => {
@@ -48,11 +54,15 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
     try {
         const user = await UserSchema.findById(id);
+        if (!user) {
+            return done(new Error('User not found'));
+        }
         done(null, user);
     } catch (error) {
         done(error);
     }
-})
+});
 
-app.get('/', (req, res) => res.send('Hello World!'))
+
+app.get('/', (req, res) => res.send('Hello, Lili🫶'))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

@@ -3,10 +3,10 @@ const UserSchema = require("../Model/UserSchema");
 
 exports.userRegister = async (req, res) => {
     try {
-        const { user, email, pwd } = req.body;
-        const newUser = await UserSchema.create({ user, email, pwd });
+        const { name, email, pwd } = req.body;
+        const newUser = await UserSchema.create({ name, email, pwd });
         if (newUser) {
-            res.status(201).json({ message: "User registered successfully" });
+            res.status(201).json({ message: "User registered successfully", user: newUser });
         } else {
             res.status(400).json({ message: "User not registered" });
         }
@@ -16,10 +16,11 @@ exports.userRegister = async (req, res) => {
     }
 }
 
-exports.userLogin = async (req, res) => {
+exports.userLogin = async (req, res, next) => {
     passport.authenticate('local', (error, user, info) => {
-        if (error) return next(error);
+        if (error) return next(error, "Error logging in");
         if (!user) res.status(401).json({ message: "Invalid username or password" });
+        
         req.logIn(user, (err) => {
             if (err) return next(err);
             res.status(200).json({ message: "Login successfully" });
