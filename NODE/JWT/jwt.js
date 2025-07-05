@@ -1,55 +1,61 @@
 const jwt = require('jsonwebtoken');
 
-const algorithm = 'HS256';
-
+// For protecting routes
 const jwtAuthMiddleware = (req, res, next) => {
+
     try {
-        // Check if the token exists or not in the header
+        // Step 1: Check if token is present in header or not
         const authHeader = req.headers.authorization;
 
-        if (!authHeader || !authHeader.startsWith("Bearer")) {
-            return res.status(401).json({
-                message: "No Token Provided"
-            });
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return res.status(401).json({ message: "No token provided" });
         }
-        // if the token exists, then verify it using secret key and algorithm
 
-        const token = req.headers.authorization.split(' ')[1]; // Token is in the second position of the header
-        // If the token doesn't exist then return an error
+        // Step 2: Extract token from header
+
+        const token = req.headers.authorization.split(' ')[1];
+
         if (!token) {
-            return res.status(401).json({
-                message: "No Token Provided"
-            });
+            return res.status(401).json({ message: "No token provided" });
         }
-        // If the token is valid then pass the request to the next middleware
 
+        // Step 3: Verify token using secret key
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-        //save the decoded token in the request object so that we can use it in the next middleware
-        req.user = decoded;
-        next();
+        console.log("Decoded token:", decoded);
 
+        // Step 4: Attach user details to request
+
+        req.user = decoded;
+
+        // Step 5: Call next middleware
+        next();
     } catch (error) {
-        return res.status(401).json({
-            message: "Unauthorized Access"
-        })
+        console.log("Error", error);
+        return res.status(401).json({ message: 'Unauthorized' })
     }
 }
 
-// Function to generate JWT token
-// we pass user details as payload 
+const generateToken = (user) => {
+    // Add user details to payload object
+    const payload = {
+        id: user._id,
+        name: user.name,
+        email: user.email
+    };
 
-const generateToken = (payload) => {
-    return jwt.sign(payload, process.env.JWT_SECRET_KEY, {
-        expiresIn: process.env.JWT_EXPIRES_IN,
-        algorithm
-    });
-};
+    // Generate token using secret key
+    const token = jwt.sign(payload, process.env.JWT_SECRET_KEY,
+        { expiresIn: process.env.JWT_EXPIRES_IN }
+    );
+    console.log("Token:", token);
+    return token;
+}
 
-// Function to verify the JWT token
 const verifyToken = (token) => {
+    // Verify token using secret key
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
     return decoded;
 }
 
-module.exports = {jwtAuthMiddleware, generateToken, verifyToken};
+module.exports = { jwtAuthMiddleware, generateToken, verifyToken };
