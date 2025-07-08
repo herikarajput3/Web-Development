@@ -1,0 +1,46 @@
+{
+  "rooms": [
+    {
+      "id": "1",
+      "name": "Deluxe Room",
+      "type": "Double",
+      "price": 150,
+      "features": [
+        "WiFi",
+        "TV",
+        "AC"
+      ],
+      "available": true
+    },
+    {
+      "id": "2",
+      "name": "Suite Room",
+      "type": "King",
+      "price": 250,
+      "features": [
+        "WiFi",
+        "TV",
+        "AC",
+        "Balcony"
+      ],
+      "available": false
+    }
+  ],
+  "reservations": [
+    {
+      "id": "498c",
+      "name": "Trupti",
+      "roomId": "1",
+      "checkIn": "2025-07-09",
+      "checkOut": "2025-07-11"
+    }
+  ],
+  "users": [
+    {
+      "id": "8014",
+      "name": "Trupti",
+      "email": "trupti@gmail.com",
+      "password": "123456"
+    }
+  ]
+}

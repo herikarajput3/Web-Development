@@ -1,0 +1,100 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+  color: #003366;
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: #003366;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #003366;
+  border-color: #003366;
+}
+
+.btn-primary:hover {
+  background-color: #002244;
+  border-color: #002244;
+}
+
+.btn-outline-warning {
+  color: #f0c040;
+  border-color: #f0c040;
+}
+
+.btn-outline-warning:hover {
+  background-color: #f0c040;
+  color: #212529;
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  color: #003366;
+  font-weight: 500;
+}
+
+/* Navbar */
+.navbar {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+/* Forms */
+.form-control, .form-select {
+  border-radius: 0.5rem;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #003366;
+  box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25);
+}
+
+/* Badge */
+.badge-available {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge-unavailable {
+  background-color: #dc3545;
+  color: white;
+}
+
+.section-padding {
+  padding: 4rem 0;
+}
+
+.mt-6 {
+  margin-top: 6rem !important;
+}
+
+.mb-6 {
+  margin-bottom: 6rem !important;
+}
