@@ -1,10 +1,11 @@
 const authorSchema = require("../Model/authorSchema");
+const bcrypt = require("bcrypt");
 
 exports.authorCreate = async (req, res) => {
     const { name, email, password } = req.body;
     try {
-        const author = await authorSchema.create({ name, email, password })
-
+        const hashpwd = await bcrypt.hash(password, 10)
+        const author = await authorSchema.create({ name, email, password: hashpwd })
         if (author) {
             res.status(201).json({
                 success: true,

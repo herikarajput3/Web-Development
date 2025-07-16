@@ -4,6 +4,12 @@ exports.blogCreate = async (req, res) => {
     const { title, description, author } = req.body;
     try {
         const blog = await blogSchema.create({ title, description, author })
+        if(!title || !description || !author){
+            res.status(400).json({
+                message: "title, description and author are required"
+            })
+        }
+        
         if (blog) {
             res.status(201).json({
                 success: true,
