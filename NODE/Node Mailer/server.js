@@ -1,4 +1,3 @@
-// mvrq ljse bneb qyzt
 const express = require('express')
 const app = express()
 const port = 3000
@@ -21,7 +20,7 @@ function sendEmail(email, name, message, number) {
         service: 'gmail',
         auth: {
             user: "herikarajput.rnw@gmail.com",   // Replace with your Gmail address
-            pass: "mvrqljsebnebqyzt",       // Replace with your generated App Password
+            pass: "",       // Replace with your generated App Password
         }
     });
 
