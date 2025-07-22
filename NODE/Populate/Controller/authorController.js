@@ -1,6 +1,5 @@
 const authorSchema = require("../Model/authorSchema");
 const bcrypt = require("bcrypt");
-
 exports.authorCreate = async (req, res) => {
     const { name, email, password } = req.body;
     try {
